@@ -12,13 +12,14 @@ using System.Windows.Forms;
 
 namespace TattooStudio
 {
-    public partial class Positioncs : Form
+    public partial class Position : Form
     {
         int rowId = 0;
 
-        public Positioncs()
+        public Position()
         {
             InitializeComponent();
+            databaseLoad();
         }
 
         private void databaseLoad()
@@ -47,8 +48,13 @@ namespace TattooStudio
                         WHERE id_position={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
+                positionBox.Text = dataTable.Rows[0][1].ToString();
 
                 changeVisibleBox();
+            }
+            catch (InvalidCastException)
+            {
+                clearBox();
             }
             catch (Exception)
             {
@@ -64,7 +70,7 @@ namespace TattooStudio
 
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
                ($@"UPDATE Должность SET title='{positionBox.Text}'
-                    WHERE id_client='{rowId}'", connectionToDB.GetConnection());
+                    WHERE id_position='{rowId}'", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
@@ -94,6 +100,13 @@ namespace TattooStudio
             addButton.Visible = false;
         }
 
+        private void sessionAssignmentMenuItem_Click(object sender, EventArgs e)
+        {
+            SessionAssignment sessionAssignment = new SessionAssignment();
+            sessionAssignment.Show();
+            this.Hide();
+        }
+
         private void clearBox()
         {
             foreach (TextBox textBox in splitContainer.Panel2.Controls.OfType<TextBox>())
@@ -103,6 +116,75 @@ namespace TattooStudio
                 deleteButton.Visible = false;
                 textBox.Clear();
             }
+        }
+
+        private void clientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Client client = new Client();
+            client.Show();
+            this.Hide();
+        }
+
+        private void toolStripEmployee_Click(object sender, EventArgs e)
+        {
+            Employee employee = new Employee();
+            employee.Show();
+            this.Hide();
+        }
+
+        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Artist artist = new Artist();
+            artist.Show();
+            this.Hide();
+        }
+
+        private void typeOfServiceMenuItem_Click(object sender, EventArgs e)
+        {
+            TypeOfService typeOfService = new TypeOfService();
+            typeOfService.Show();
+            this.Hide();
+        }
+
+        private void positionMenuItem_Click(object sender, EventArgs e)
+        {
+            Position position = new Position();
+            position.Show();
+            this.Hide();
+        }
+
+        private void serviceProvidedMenuItem_Click(object sender, EventArgs e)
+        {
+            ServiceProvided serviceProvided = new ServiceProvided();
+            serviceProvided.Show();
+            this.Hide();
+        }
+
+        private void sessionStatusMenuItem_Click(object sender, EventArgs e)
+        {
+            SesssionStatus sesssionStatus = new SesssionStatus();
+            sesssionStatus.Show();
+            this.Hide();
+        }
+
+        private void serviceTypeMenuItem_Click(object sender, EventArgs e)
+        {
+            ServiceType type = new ServiceType();
+            type.Show();
+            this.Hide();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            ConnectionToDB connectionToDB = new ConnectionToDB();
+
+            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+               ($@"DELETE FROM Должность WHERE id_position={rowId}", connectionToDB.GetConnection());
+            DataTable dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            clearBox();
+            databaseLoad();
         }
     }
 }

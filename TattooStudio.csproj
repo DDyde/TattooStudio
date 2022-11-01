@@ -9,7 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Photo\profile\alyaskaProfile.png" />
+    <None Remove="Photo\profile\alyaska\alyaskaProfile.png" />
+    <None Remove="Photo\profile\alyaska\alyaskaWork\1.jpg" />
+    <None Remove="Photo\profile\alyaska\alyaskaWork\2.jpg" />
+    <None Remove="Photo\profile\alyaska\alyaskaWork\neTattoo.jpg" />
+    <None Remove="Photo\profile\alyaska\alyaskaWork\tattoo.jpg" />
+    <None Remove="Photo\profile\defultProfile.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Photo\profile\alyaska\alyaskaWork\2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Photo\profile\alyaska\alyaskaWork\1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Photo\profile\defultProfile.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Npgsql" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Photo\profile\alyaska\alyaskaProfile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

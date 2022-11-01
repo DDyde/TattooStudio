@@ -1,6 +1,6 @@
 ﻿namespace TattooStudio
 {
-    partial class Employee
+    partial class Position
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.dataGridEmployee = new System.Windows.Forms.DataGridView();
+            this.dataGridPosition = new System.Windows.Forms.DataGridView();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,24 +40,17 @@
             this.serviceProvidedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionStatusMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceTypeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salary = new System.Windows.Forms.NumericUpDown();
-            this.positionBox = new System.Windows.Forms.ComboBox();
-            this.workExp = new System.Windows.Forms.NumericUpDown();
+            this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
-            this.updateButton = new System.Windows.Forms.Button();
-            this.employeeMiddlename = new System.Windows.Forms.TextBox();
-            this.employeeName = new System.Windows.Forms.TextBox();
-            this.employeeSurname = new System.Windows.Forms.TextBox();
-            this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.positionBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPosition)).BeginInit();
             this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.salary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.workExp)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer
@@ -69,36 +62,31 @@
             // 
             // splitContainer.Panel1
             // 
-            this.splitContainer.Panel1.Controls.Add(this.dataGridEmployee);
+            this.splitContainer.Panel1.Controls.Add(this.dataGridPosition);
             // 
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
-            this.splitContainer.Panel2.Controls.Add(this.salary);
-            this.splitContainer.Panel2.Controls.Add(this.positionBox);
-            this.splitContainer.Panel2.Controls.Add(this.workExp);
+            this.splitContainer.Panel2.Controls.Add(this.updateButton);
             this.splitContainer.Panel2.Controls.Add(this.deleteButton);
             this.splitContainer.Panel2.Controls.Add(this.addButton);
-            this.splitContainer.Panel2.Controls.Add(this.updateButton);
-            this.splitContainer.Panel2.Controls.Add(this.employeeMiddlename);
-            this.splitContainer.Panel2.Controls.Add(this.employeeName);
-            this.splitContainer.Panel2.Controls.Add(this.employeeSurname);
+            this.splitContainer.Panel2.Controls.Add(this.positionBox);
             this.splitContainer.Size = new System.Drawing.Size(800, 450);
             this.splitContainer.SplitterDistance = 612;
             this.splitContainer.TabIndex = 0;
             // 
-            // dataGridEmployee
+            // dataGridPosition
             // 
-            this.dataGridEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridEmployee.Location = new System.Drawing.Point(0, 0);
-            this.dataGridEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dataGridEmployee.Name = "dataGridEmployee";
-            this.dataGridEmployee.RowHeadersWidth = 51;
-            this.dataGridEmployee.RowTemplate.Height = 29;
-            this.dataGridEmployee.Size = new System.Drawing.Size(612, 450);
-            this.dataGridEmployee.TabIndex = 0;
-            this.dataGridEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmployee_CellClick);
+            this.dataGridPosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridPosition.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridPosition.Location = new System.Drawing.Point(0, 0);
+            this.dataGridPosition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridPosition.Name = "dataGridPosition";
+            this.dataGridPosition.RowHeadersWidth = 51;
+            this.dataGridPosition.RowTemplate.Height = 29;
+            this.dataGridPosition.Size = new System.Drawing.Size(612, 450);
+            this.dataGridPosition.TabIndex = 0;
+            this.dataGridPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPosition_CellClick);
             // 
             // menuStrip
             // 
@@ -108,7 +96,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(184, 24);
-            this.menuStrip.TabIndex = 19;
+            this.menuStrip.TabIndex = 28;
             this.menuStrip.Text = "menuStrip1";
             // 
             // менюToolStripMenuItem
@@ -183,42 +171,34 @@
             this.serviceTypeMenuItem.Text = "Тип услуг";
             this.serviceTypeMenuItem.Click += new System.EventHandler(this.serviceTypeMenuItem_Click);
             // 
-            // salary
+            // sessionAssignmentMenuItem
             // 
-            this.salary.DecimalPlaces = 2;
-            this.salary.Location = new System.Drawing.Point(3, 196);
-            this.salary.Maximum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            0});
-            this.salary.Name = "salary";
-            this.salary.Size = new System.Drawing.Size(120, 23);
-            this.salary.TabIndex = 18;
+            this.sessionAssignmentMenuItem.Name = "sessionAssignmentMenuItem";
+            this.sessionAssignmentMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
+            this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
             // 
-            // positionBox
+            // updateButton
             // 
-            this.positionBox.FormattingEnabled = true;
-            this.positionBox.Location = new System.Drawing.Point(3, 138);
-            this.positionBox.Name = "positionBox";
-            this.positionBox.Size = new System.Drawing.Size(178, 23);
-            this.positionBox.TabIndex = 17;
-            // 
-            // workExp
-            // 
-            this.workExp.Location = new System.Drawing.Point(3, 167);
-            this.workExp.Name = "workExp";
-            this.workExp.Size = new System.Drawing.Size(120, 23);
-            this.workExp.TabIndex = 16;
+            this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.updateButton.Location = new System.Drawing.Point(3, 228);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(74, 23);
+            this.updateButton.TabIndex = 25;
+            this.updateButton.Text = "Изменить";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Visible = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // deleteButton
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(100, 286);
+            this.deleteButton.Location = new System.Drawing.Point(99, 226);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(72, 25);
-            this.deleteButton.TabIndex = 15;
+            this.deleteButton.Size = new System.Drawing.Size(74, 25);
+            this.deleteButton.TabIndex = 27;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Visible = false;
@@ -228,77 +208,39 @@
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(55, 286);
+            this.addButton.Location = new System.Drawing.Point(53, 226);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(72, 25);
-            this.addButton.TabIndex = 14;
+            this.addButton.Size = new System.Drawing.Size(74, 25);
+            this.addButton.TabIndex = 26;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // updateButton
+            // positionBox
             // 
-            this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(9, 286);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(72, 23);
-            this.updateButton.TabIndex = 13;
-            this.updateButton.Text = "Изменить";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Visible = false;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            this.positionBox.Location = new System.Drawing.Point(3, 61);
+            this.positionBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.positionBox.Name = "positionBox";
+            this.positionBox.Size = new System.Drawing.Size(179, 23);
+            this.positionBox.TabIndex = 0;
             // 
-            // employeeMiddlename
-            // 
-            this.employeeMiddlename.Location = new System.Drawing.Point(3, 109);
-            this.employeeMiddlename.Name = "employeeMiddlename";
-            this.employeeMiddlename.PlaceholderText = "Отчество";
-            this.employeeMiddlename.Size = new System.Drawing.Size(178, 23);
-            this.employeeMiddlename.TabIndex = 2;
-            // 
-            // employeeName
-            // 
-            this.employeeName.Location = new System.Drawing.Point(3, 80);
-            this.employeeName.Name = "employeeName";
-            this.employeeName.PlaceholderText = "Имя";
-            this.employeeName.Size = new System.Drawing.Size(179, 23);
-            this.employeeName.TabIndex = 1;
-            // 
-            // employeeSurname
-            // 
-            this.employeeSurname.Location = new System.Drawing.Point(3, 51);
-            this.employeeSurname.Name = "employeeSurname";
-            this.employeeSurname.PlaceholderText = "Фамилия";
-            this.employeeSurname.Size = new System.Drawing.Size(178, 23);
-            this.employeeSurname.TabIndex = 0;
-            // 
-            // sessionAssignmentMenuItem
-            // 
-            this.sessionAssignmentMenuItem.Name = "sessionAssignmentMenuItem";
-            this.sessionAssignmentMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
-            this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
-            // 
-            // Employee
+            // Position
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Employee";
-            this.Text = "Employee";
+            this.Name = "Position";
+            this.Text = "Positioncs";
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridPosition)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.salary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.workExp)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,16 +248,11 @@
         #endregion
 
         private SplitContainer splitContainer;
-        private DataGridView dataGridEmployee;
-        private TextBox employeeName;
-        private TextBox employeeSurname;
-        private ComboBox positionBox;
-        private NumericUpDown workExp;
+        private DataGridView dataGridPosition;
+        private TextBox positionBox;
+        private Button updateButton;
         private Button deleteButton;
         private Button addButton;
-        private Button updateButton;
-        private TextBox employeeMiddlename;
-        private NumericUpDown salary;
         private MenuStrip menuStrip;
         private ToolStripMenuItem менюToolStripMenuItem;
         private ToolStripMenuItem toolStripTextBox1;

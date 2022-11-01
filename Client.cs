@@ -110,5 +110,54 @@ namespace TattooStudio
             employee.Show();
             this.Hide();
         }
+
+        private void ìàñòåðàToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Artist artist = new Artist();
+            artist.Show();
+            this.Hide();
+        }
+
+        private void typeOfServiceMenuItem_Click(object sender, EventArgs e)
+        {
+            TypeOfService typeOfService = new TypeOfService();
+            typeOfService.Show();
+            this.Hide();
+        }
+
+        private void positionMenuItem_Click(object sender, EventArgs e)
+        {
+            Position position = new Position();
+            position.Show();
+            this.Hide();
+        }
+
+        private void serviceProvidedMenuItem_Click(object sender, EventArgs e)
+        {
+            ServiceProvided serviceProvided = new ServiceProvided();
+            serviceProvided.Show();
+            this.Hide();
+        }
+
+        private void sessionStatusMenuItem_Click(object sender, EventArgs e)
+        {
+            SesssionStatus sesssionStatus = new SesssionStatus();
+            sesssionStatus.Show();
+            this.Hide();
+        }
+
+        private void serviceTypeMenuItem_Click(object sender, EventArgs e)
+        {
+            ServiceType type = new ServiceType();
+            type.Show();
+            this.Hide();
+        }
+
+        private void sessionAssignmentMenuItem_Click(object sender, EventArgs e)
+        {
+            SessionAssignment sessionAssignment = new SessionAssignment();
+            sessionAssignment.Show();
+            this.Hide();
+        }
     }
 }

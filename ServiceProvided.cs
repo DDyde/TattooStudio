@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace TattooStudio
 {
-    public partial class TypeOfService : Form
+    public partial class ServiceProvided : Form
     {
         int rowId = 0;
 
-        public TypeOfService()
+        public ServiceProvided()
         {
             InitializeComponent();
             databaseLoad();
@@ -27,37 +27,37 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
-                    (@"SELECT id_type_of_service, Вид_услуги.title as Название, Тип_услуги.title as Тип_услуги,
-                        Вид_услуги.price as Цена
-                        FROM Вид_услуги
-                        JOIN Тип_услуги ON Тип_услуги.id_service_type = Вид_услуги.id_service_type", connectionToDB.GetConnection());
+                    (@"SELECT id_service_provided, Вид_услуги.title as Вид_услуги, CONCAT_WS(' ', Сотрудник.surname, Сотрудник.name, Сотрудник.middlename) as ФИО
+                        FROM Предоставляемая_услуга
+                        JOIN Вид_услуги ON Вид_услуги.id_type_of_service = Предоставляемая_услуга.id_type_of_service
+                        JOIN Сотрудник ON Сотрудник.id_employee = Предоставляемая_услуга.id_employee", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
-            dataGridTypeOfService.DataSource = dataTable;
-            dataGridTypeOfService.Columns[0].Visible = false;
-
+            dataGridServiceProvided.DataSource = dataTable;
+            dataGridServiceProvided.Columns[0].Visible = false;
             comboBox();
-            
         }
 
-        private void dataGridTypeOfService_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridServiceProvided_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 comboBox();
 
-                rowId = Convert.ToInt32(dataGridTypeOfService[0, e.RowIndex].Value);
+                rowId = Convert.ToInt32(dataGridServiceProvided[0, e.RowIndex].Value);
 
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
                 NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-                   ($@"SELECT * FROM Вид_услуги
-                        WHERE id_type_of_service={rowId}", connectionToDB.GetConnection());
+                   ($@"SELECT id_service_provided, Вид_услуги.title, CONCAT_WS(' ', Сотрудник.surname, Сотрудник.name, Сотрудник.middlename)
+                        FROM Предоставляемая_услуга
+                        JOIN Вид_услуги ON Вид_услуги.id_type_of_service = Предоставляемая_услуга.id_type_of_service
+                        JOIN Сотрудник ON Сотрудник.id_employee = Предоставляемая_услуга.id_employee
+                        WHERE Предоставляемая_услуга.id_service_provided={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
-                typeServiceBox.Text = dataTable.Rows[0][1].ToString();
-                typeServiceComboBox.SelectedValue = dataTable.Rows[0][3];
-                priceBox.Text = dataTable.Rows[0][2].ToString();
+                typeOfServiceBox.SelectedValue = dataTable.Rows[0][1];
+                employeeBox.SelectedValue = dataTable.Rows[0][2];
 
                 changeVisibleBox();
             }
@@ -76,13 +76,22 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
-                $@"SELECT id_service_type, title
-                FROM Тип_услуги", connectionToDB.GetConnection());
+                $@"SELECT id_type_of_service, title
+                FROM Вид_услуги", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
-            typeServiceComboBox.DataSource = dataTable;
-            typeServiceComboBox.DisplayMember = "title";
-            typeServiceComboBox.ValueMember = "id_service_type";
+            typeOfServiceBox.DataSource = dataTable;
+            typeOfServiceBox.DisplayMember = "title";
+            typeOfServiceBox.ValueMember = "id_type_of_service";
+
+            NpgsqlDataAdapter sqlDataAdapterB = new NpgsqlDataAdapter(
+                $@"SELECT id_employee, CONCAT_WS(' ', surname, name, middlename) as ФИО
+                FROM Сотрудник", connectionToDB.GetConnection());
+            DataTable dataTableB = new DataTable();
+            sqlDataAdapterB.Fill(dataTableB);
+            employeeBox.DataSource = dataTableB;
+            employeeBox.DisplayMember = "ФИО";
+            employeeBox.ValueMember = "id_employee";
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -91,13 +100,14 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Вид_услуги SET title='{typeServiceBox.Text}', price='{priceBox.Text}', id_service_type='{typeServiceComboBox.SelectedValue}'
-                    WHERE id_type_of_service='{rowId}'", connectionToDB.GetConnection());
+               ($@"UPDATE Предоставляемая_услуга SET id_type_of_service='{typeOfServiceBox.SelectedValue}', id_employee='{employeeBox.SelectedValue}'
+                    WHERE id_session_assignment='{rowId}'", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
-            dataGridTypeOfService.Refresh();
+            dataGridServiceProvided.Refresh();
             clearBox();
+            databaseLoad();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -105,12 +115,13 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Вид_услуги (title, price, id_service_type) 
-                    VALUES ('{typeServiceBox.Text}', '{priceBox.Text}', '{typeServiceComboBox.SelectedValue}')", connectionToDB.GetConnection());
+               ($@"INSERT INTO Предоставляемая_услуга (id_type_of_service, id_employee) 
+                    VALUES ('{typeOfServiceBox.SelectedValue}', '{employeeBox.SelectedValue}')", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
             clearBox();
+            databaseLoad();
         }
 
         private void changeVisibleBox()
@@ -129,17 +140,13 @@ namespace TattooStudio
 
         private void clearBox()
         {
-            foreach (TextBox textBox in splitContainer.Panel2.Controls.OfType<TextBox>())
-            {
-                addButton.Visible = true;
-                updateButton.Visible = false;
-                deleteButton.Visible = false;
-                textBox.Clear();
-            }
-
-            priceBox.Value = 0;
-
-            databaseLoad();
+            //foreach (TextBox textBox in splitServiceProvidedContainer.Panel2.Controls.OfType<TextBox>())
+            //{
+            //    addButton.Visible = true;
+            //    updateButton.Visible = false;
+            //    deleteButton.Visible = false;
+            //    textBox.Clear();
+            //}
         }
 
         private void clientToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,11 +210,12 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"DELETE FROM Вид_услуги WHERE id_type_of_service={rowId}", connectionToDB.GetConnection());
+               ($@"DELETE FROM Предоставляемая_услуга WHERE id_service_provided={rowId}", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
             clearBox();
+            databaseLoad();
         }
     }
 }

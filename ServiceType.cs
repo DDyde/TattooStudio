@@ -52,6 +52,10 @@ namespace TattooStudio
 
                 changeVisibleBox();
             }
+            catch (InvalidCastException)
+            {
+                clearBox();
+            }
             catch (Exception)
             {
                 throw;
@@ -81,7 +85,7 @@ namespace TattooStudio
 
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
                ($@"INSERT INTO Тип_услуги (title) 
-                    VALUES ('{serviceStatusBox.Text}'", connectionToDB.GetConnection());
+                    VALUES ('{serviceStatusBox.Text}')", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
 
@@ -96,6 +100,19 @@ namespace TattooStudio
             addButton.Visible = false;
         }
 
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            ConnectionToDB connectionToDB = new ConnectionToDB();
+
+            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+               ($@"DELETE FROM Тип_услуги WHERE id_service_type={rowId}", connectionToDB.GetConnection());
+            DataTable dataTable = new DataTable();
+            sqlDataAdapter.Fill(dataTable);
+
+            clearBox();
+            databaseLoad();
+        }
+
         private void clearBox()
         {
             foreach (TextBox textBox in splitContainer.Panel2.Controls.OfType<TextBox>())
@@ -105,6 +122,69 @@ namespace TattooStudio
                 deleteButton.Visible = false;
                 textBox.Clear();
             }
+        }
+
+        private void sessionAssignmentMenuItem_Click(object sender, EventArgs e)
+        {
+            SessionAssignment sessionAssignment = new SessionAssignment();
+            sessionAssignment.Show();
+            this.Hide();
+        }
+
+        private void clientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Client client = new Client();
+            client.Show();
+            this.Hide();
+        }
+
+        private void toolStripEmployee_Click(object sender, EventArgs e)
+        {
+            Employee employee = new Employee();
+            employee.Show();
+            this.Hide();
+        }
+
+        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Artist artist = new Artist();
+            artist.Show();
+            this.Hide();
+        }
+
+        private void typeOfServiceMenuItem_Click(object sender, EventArgs e)
+        {
+            TypeOfService typeOfService = new TypeOfService();
+            typeOfService.Show();
+            this.Hide();
+        }
+
+        private void positionMenuItem_Click(object sender, EventArgs e)
+        {
+            Position position = new Position();
+            position.Show();
+            this.Hide();
+        }
+
+        private void serviceProvidedMenuItem_Click(object sender, EventArgs e)
+        {
+            ServiceProvided serviceProvided = new ServiceProvided();
+            serviceProvided.Show();
+            this.Hide();
+        }
+
+        private void sessionStatusMenuItem_Click(object sender, EventArgs e)
+        {
+            SesssionStatus sesssionStatus = new SesssionStatus();
+            sesssionStatus.Show();
+            this.Hide();
+        }
+
+        private void serviceTypeMenuItem_Click(object sender, EventArgs e)
+        {
+            ServiceType type = new ServiceType();
+            type.Show();
+            this.Hide();
         }
     }
 }
