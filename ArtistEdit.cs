@@ -15,6 +15,9 @@ namespace TattooStudio
     public partial class ArtistEdit : Form
     {
         int rowId = 0;
+        List<string> imagePath = new List<string>();
+        int curentImage = 0;
+        string profileImage = null;
 
         public ArtistEdit()
         {
@@ -44,7 +47,8 @@ namespace TattooStudio
             artistPosition.SelectedValue = dataTable.Rows[0][6].ToString();
             workExp.Text = dataTable.Rows[0][5].ToString();
             salary.Text = dataTable.Rows[0][7].ToString();
-            getProfileImg(dataTable.Rows[0][8].ToString());
+            profileImage = dataTable.Rows[0][8].ToString();
+            getProfileImg(profileImage);
             getImageWork();
             getPosition();
         }
@@ -66,17 +70,14 @@ namespace TattooStudio
         {
             if (profileImagePath != null)
             {
-                artistProfile.Image = Image.FromFile($@".{profileImagePath}");
+                artistProfile.ImageLocation = $@".\Photo\profile\{profileImagePath}";
+                artistProfile.Load(artistProfile.ImageLocation);
             }
             else
             {
                 artistProfile.Image = Image.FromFile(@".\Photo\profile\defultProfile.ico");
             }            
         }
-
-
-        List<string> imagePath = new List<string>();
-        int curentImage = 0;
 
         private void getImageWork()
         {
@@ -122,6 +123,41 @@ namespace TattooStudio
                 curentImage = imagePath.Count - 1;
                 imageWork.Image = Image.FromFile(imagePath[curentImage]);
             }
+        }
+
+        private void updateImageProfile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                Filter = "Image files(*.jpg; *.png; *.jpeg;)|*.jpg;*.png;*.jpeg;",
+                Multiselect = false
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string oldImage = artistProfile.ImageLocation;
+                string directoryImg = Path.GetDirectoryName(artistProfile.ImageLocation);
+                string nameImage = Path.GetFileName(openFileDialog.FileName);
+                string pathImage = $@"{directoryImg}\{nameImage}";
+                File.Copy(openFileDialog.FileName, pathImage);
+                artistProfile.ImageLocation = pathImage;
+                artistProfile.Load(artistProfile.ImageLocation);
+                File.Delete(oldImage);
+            }
+            
+
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            //ConnectionToDB connectionToDB = new ConnectionToDB();
+
+            //NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+            //   ($@"UPDATE Сотрудник SET surname='{employeeSurname.Text}', name='{employeeName.Text}', middlename='{employeeMiddlename.Text}', 
+            //        id_position='{positionBox.SelectedValue}', work_experience='{workExp.Value.ToString()}', salary='{salary.Value.ToString()}'
+            //        WHERE id_employee='{rowId}'", connectionToDB.GetConnection());
+            //DataTable dataTable = new DataTable();
+            //sqlDataAdapter.Fill(dataTable);
         }
     }
 }
