@@ -26,7 +26,7 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
-                    (@"select * from employeeMaster", connectionToDB.GetConnection());
+                    (@"select * from employeemaster", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
             dataGridArtist.DataSource = dataTable;
