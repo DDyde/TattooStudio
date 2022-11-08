@@ -15,6 +15,7 @@ namespace TattooStudio
     public partial class TypeOfService : Form
     {
         int rowId = 0;
+        int rule = AccessLevel.rule;
 
         public TypeOfService()
         {
@@ -87,30 +88,44 @@ namespace TattooStudio
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            changeVisibleBox();
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                changeVisibleBox();
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Вид_услуги SET title='{typeServiceBox.Text}', price='{priceBox.Text}', id_service_type='{typeServiceComboBox.SelectedValue}'
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"UPDATE Вид_услуги SET title='{typeServiceBox.Text}', price='{priceBox.Text}', id_service_type='{typeServiceComboBox.SelectedValue}'
                     WHERE id_type_of_service='{rowId}'", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            dataGridTypeOfService.Refresh();
-            clearBox();
+                dataGridTypeOfService.Refresh();
+                clearBox();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Вид_услуги (title, price, id_service_type) 
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"INSERT INTO Вид_услуги (title, price, id_service_type) 
                     VALUES ('{typeServiceBox.Text}', '{priceBox.Text}', '{typeServiceComboBox.SelectedValue}')", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
+                clearBox();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void changeVisibleBox()
@@ -200,14 +215,21 @@ namespace TattooStudio
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"DELETE FROM Вид_услуги WHERE id_type_of_service={rowId}", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"DELETE FROM Вид_услуги WHERE id_type_of_service={rowId}", connectionToDB.GetConnection());
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
+                clearBox();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
     }
 }

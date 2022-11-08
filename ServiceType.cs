@@ -15,6 +15,7 @@ namespace TattooStudio
     public partial class ServiceType : Form
     {
         int rowId = 0;
+        int rule = AccessLevel.rule;
 
         public ServiceType()
         {
@@ -27,7 +28,8 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
-                    (@"select * from Тип_услуги", connectionToDB.GetConnection());
+                    (@"select id_service_type, title as Название
+                    from Тип_услуги", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
             dataGridServiceStatus.DataSource = dataTable;
@@ -65,32 +67,46 @@ namespace TattooStudio
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            changeVisibleBox();
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                changeVisibleBox();
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Тип_услуги SET title='{serviceStatusBox.Text}'
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"UPDATE Тип_услуги SET title='{serviceStatusBox.Text}'
                     WHERE id_service_type='{rowId}'", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            dataGridServiceStatus.Refresh();
-            clearBox();
-            databaseLoad();
+                dataGridServiceStatus.Refresh();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Тип_услуги (title) 
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"INSERT INTO Тип_услуги (title) 
                     VALUES ('{serviceStatusBox.Text}')", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void changeVisibleBox()
@@ -102,15 +118,22 @@ namespace TattooStudio
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"DELETE FROM Тип_услуги WHERE id_service_type={rowId}", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"DELETE FROM Тип_услуги WHERE id_service_type={rowId}", connectionToDB.GetConnection());
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void clearBox()

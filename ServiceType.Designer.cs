@@ -40,11 +40,12 @@
             this.serviceProvidedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionStatusMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceTypeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceStatusBox = new System.Windows.Forms.TextBox();
             this.updateButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
-            this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -66,6 +67,8 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
             this.splitContainer.Panel2.Controls.Add(this.serviceStatusBox);
             this.splitContainer.Panel2.Controls.Add(this.updateButton);
@@ -77,6 +80,9 @@
             // 
             // dataGridServiceStatus
             // 
+            this.dataGridServiceStatus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridServiceStatus.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridServiceStatus.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridServiceStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridServiceStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridServiceStatus.Location = new System.Drawing.Point(0, 0);
@@ -171,12 +177,19 @@
             this.serviceTypeMenuItem.Text = "Тип услуг";
             this.serviceTypeMenuItem.Click += new System.EventHandler(this.serviceTypeMenuItem_Click);
             // 
+            // sessionAssignmentMenuItem
+            // 
+            this.sessionAssignmentMenuItem.Name = "sessionAssignmentMenuItem";
+            this.sessionAssignmentMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
+            this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
+            // 
             // serviceStatusBox
             // 
-            this.serviceStatusBox.Location = new System.Drawing.Point(8, 55);
+            this.serviceStatusBox.Location = new System.Drawing.Point(8, 74);
             this.serviceStatusBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.serviceStatusBox.Name = "serviceStatusBox";
-            this.serviceStatusBox.Size = new System.Drawing.Size(166, 23);
+            this.serviceStatusBox.Size = new System.Drawing.Size(165, 23);
             this.serviceStatusBox.TabIndex = 29;
             // 
             // updateButton
@@ -217,12 +230,15 @@
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
-            // sessionAssignmentMenuItem
+            // label1
             // 
-            this.sessionAssignmentMenuItem.Name = "sessionAssignmentMenuItem";
-            this.sessionAssignmentMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
-            this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(8, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 15);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Тип сервиса:";
             // 
             // ServiceType
             // 
@@ -264,5 +280,6 @@
         private ToolStripMenuItem sessionStatusMenuItem;
         private ToolStripMenuItem serviceTypeMenuItem;
         private ToolStripMenuItem sessionAssignmentMenuItem;
+        private Label label1;
     }
 }

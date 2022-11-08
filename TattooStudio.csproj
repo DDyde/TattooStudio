@@ -9,35 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Photo\profile\alyaskaProfile.png" />
-    <None Remove="Photo\profile\alyaska\alyaskaProfile.png" />
-    <None Remove="Photo\profile\alyaska\alyaskaWork\1.jpg" />
-    <None Remove="Photo\profile\alyaska\alyaskaWork\2.jpg" />
-    <None Remove="Photo\profile\alyaska\alyaskaWork\neTattoo.jpg" />
-    <None Remove="Photo\profile\alyaska\alyaskaWork\tattoo.jpg" />
-    <None Remove="Photo\profile\defultProfile.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Photo\profile\alyaska\alyaskaWork\2.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photo\profile\alyaska\alyaskaWork\1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Photo\profile\defultProfile.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Npgsql" Version="6.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Photo\profile\alyaska\alyaskaProfile.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.17" />
+    <PackageReference Include="System.Data.Odbc" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +20,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="TattooStudio_db.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TattooStudio_db.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +32,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Report\ArtistPayment.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Report\EveryPayment.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TattooStudio_db.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TattooStudio_db.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

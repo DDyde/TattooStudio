@@ -6,6 +6,7 @@ namespace TattooStudio
     public partial class Client : Form
     {
         int rowId = 0;
+        int rule = AccessLevel.rule;
 
         public Client()
         {
@@ -18,7 +19,8 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
             
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
-                    (@"select * from Клиент", connectionToDB.GetConnection());
+                    (@"select id_client, surname as Фамилия, name as Имя, middlename as Отчество, date_of_birth as Дата_рождения
+                      from Клиент", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
             dataGridClient.DataSource = dataTable;
@@ -49,41 +51,55 @@ namespace TattooStudio
             }
             catch (Exception)
             {
-                throw;
+                clearBox();
             }
 
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            changeVisibleBox();
-            ConnectionToDB connectionToDB = new ConnectionToDB();
-            
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Клиент SET surname='{clientSurname.Text}', name='{clientName.Text}', middlename='{clientMiddlename.Text}', 
+            if (rule == 1 || rule == 2)
+            {
+                changeVisibleBox();
+                ConnectionToDB connectionToDB = new ConnectionToDB();
+
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"UPDATE Клиент SET surname='{clientSurname.Text}', name='{clientName.Text}', middlename='{clientMiddlename.Text}', 
                     date_of_birth='{dateBirthBox.Value.ToString("yyyy-MM-dd")}'
                     WHERE id_client='{rowId}'", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-            
-            dataGridClient.Refresh();
-            clearBox();
-            databaseLoad();
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+                dataGridClient.Refresh();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
-            
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Клиент (surname, name, middlename, date_of_birth) 
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
+
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"INSERT INTO Клиент (surname, name, middlename, date_of_birth) 
                     VALUES ('{clientSurname.Text}', '{clientName.Text}', '{clientMiddlename.Text}', 
                     '{dateBirthBox.Value.ToString("yyyy-MM-dd")}')", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-            
-            clearBox();
-            databaseLoad();
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void changeVisibleBox()
@@ -158,6 +174,27 @@ namespace TattooStudio
             SessionAssignment sessionAssignment = new SessionAssignment();
             sessionAssignment.Show();
             this.Hide();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
+
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"DELETE FROM Клиент
+                       WHERE id_client={rowId})", connectionToDB.GetConnection());
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
     }
 }

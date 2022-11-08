@@ -40,6 +40,7 @@
             this.serviceProvidedMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionStatusMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceTypeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salary = new System.Windows.Forms.NumericUpDown();
             this.positionBox = new System.Windows.Forms.ComboBox();
             this.workExp = new System.Windows.Forms.NumericUpDown();
@@ -49,7 +50,8 @@
             this.employeeMiddlename = new System.Windows.Forms.TextBox();
             this.employeeName = new System.Windows.Forms.TextBox();
             this.employeeSurname = new System.Windows.Forms.TextBox();
-            this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -73,6 +75,9 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.label2);
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
             this.splitContainer.Panel2.Controls.Add(this.salary);
             this.splitContainer.Panel2.Controls.Add(this.positionBox);
@@ -89,6 +94,9 @@
             // 
             // dataGridEmployee
             // 
+            this.dataGridEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridEmployee.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridEmployee.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridEmployee.Location = new System.Drawing.Point(0, 0);
@@ -183,10 +191,17 @@
             this.serviceTypeMenuItem.Text = "Тип услуг";
             this.serviceTypeMenuItem.Click += new System.EventHandler(this.serviceTypeMenuItem_Click);
             // 
+            // sessionAssignmentMenuItem
+            // 
+            this.sessionAssignmentMenuItem.Name = "sessionAssignmentMenuItem";
+            this.sessionAssignmentMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
+            this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
+            // 
             // salary
             // 
             this.salary.DecimalPlaces = 2;
-            this.salary.Location = new System.Drawing.Point(3, 196);
+            this.salary.Location = new System.Drawing.Point(3, 226);
             this.salary.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -198,6 +213,7 @@
             // 
             // positionBox
             // 
+            this.positionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.positionBox.FormattingEnabled = true;
             this.positionBox.Location = new System.Drawing.Point(3, 138);
             this.positionBox.Name = "positionBox";
@@ -206,7 +222,7 @@
             // 
             // workExp
             // 
-            this.workExp.Location = new System.Drawing.Point(3, 167);
+            this.workExp.Location = new System.Drawing.Point(3, 182);
             this.workExp.Name = "workExp";
             this.workExp.Size = new System.Drawing.Size(120, 23);
             this.workExp.TabIndex = 16;
@@ -215,7 +231,7 @@
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(100, 286);
+            this.deleteButton.Location = new System.Drawing.Point(96, 357);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(72, 25);
             this.deleteButton.TabIndex = 15;
@@ -228,7 +244,7 @@
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(55, 286);
+            this.addButton.Location = new System.Drawing.Point(51, 357);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(72, 25);
             this.addButton.TabIndex = 14;
@@ -240,7 +256,7 @@
             // 
             this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(9, 286);
+            this.updateButton.Location = new System.Drawing.Point(5, 357);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(72, 23);
             this.updateButton.TabIndex = 13;
@@ -273,12 +289,25 @@
             this.employeeSurname.Size = new System.Drawing.Size(178, 23);
             this.employeeSurname.TabIndex = 0;
             // 
-            // sessionAssignmentMenuItem
+            // label1
             // 
-            this.sessionAssignmentMenuItem.Name = "sessionAssignmentMenuItem";
-            this.sessionAssignmentMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
-            this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 164);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 15);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Опыт:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 208);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 15);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Зарплата:";
             // 
             // Employee
             // 
@@ -327,5 +356,7 @@
         private ToolStripMenuItem sessionStatusMenuItem;
         private ToolStripMenuItem serviceTypeMenuItem;
         private ToolStripMenuItem sessionAssignmentMenuItem;
+        private Label label2;
+        private Label label1;
     }
 }

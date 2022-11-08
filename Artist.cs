@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TattooStudio.Report;
 
 namespace TattooStudio
 {
@@ -26,12 +27,29 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
-                    (@"select * from employeemaster", connectionToDB.GetConnection());
+                    (@"select id_employee, surname as Фамилия, name as Имя, middlename as Отчество, Должность.title as Должность,work_experience as Опыт, salary as Зарплата
+                    from employeemaster
+                    join Должность ON Должность.id_position = employeemaster.id_position", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
             dataGridArtist.DataSource = dataTable;
             dataGridArtist.Columns[0].Visible = false;
+            getComboBox();
+        }
 
+        private void getComboBox()
+        {
+            ConnectionToDB connectionToDB = new ConnectionToDB();
+
+            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+                    (@"select id_position, title
+                    from Должность
+                    where title like '%_ату%' or title like '%_ирсинг%' or title like '%_атуаж%'", connectionToDB.GetConnection());
+            DataTable dataTable = new DataTable();
+            npgsqlDataAdapter.Fill(dataTable);
+            comboBoxPosition.DataSource = dataTable;
+            comboBoxPosition.DisplayMember = "title";
+            comboBoxPosition.ValueMember = "id_position";
         }
 
         private void dataGridArtist_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -43,7 +61,12 @@ namespace TattooStudio
                 artistEdit.ShowDialog();
                 databaseLoad();
             }
-            catch (Exception) { }
+            catch (Exception) 
+            {
+                ArtistEdit artistEdit = new ArtistEdit();
+                artistEdit.ShowDialog();
+                databaseLoad();
+            }
 
         }
 
@@ -108,6 +131,32 @@ namespace TattooStudio
             SessionAssignment sessionAssignment = new SessionAssignment();
             sessionAssignment.Show();
             this.Hide();
+        }
+
+        private void отчетToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EveryPaymentForm everyPaymentForm = new EveryPaymentForm();
+            everyPaymentForm.ShowDialog();
+        }
+
+        private void buttonAccess_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = dataGridArtist.DataSource as DataTable;
+
+            string searchValue = comboBoxPosition.Text;
+            try
+            {
+                dataTable.DefaultView.RowFilter = $@"Должность LIKE '%{searchValue}%'";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            databaseLoad();
         }
     }
 }

@@ -49,6 +49,11 @@
             this.sessionStatusBox = new System.Windows.Forms.ComboBox();
             this.serviceProvidedBox = new System.Windows.Forms.ComboBox();
             this.clientBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -69,6 +74,12 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.label5);
+            this.splitContainer.Panel2.Controls.Add(this.label4);
+            this.splitContainer.Panel2.Controls.Add(this.label3);
+            this.splitContainer.Panel2.Controls.Add(this.label2);
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
             this.splitContainer.Panel2.Controls.Add(this.deleteButton);
             this.splitContainer.Panel2.Controls.Add(this.addButton);
@@ -84,6 +95,9 @@
             // 
             // dataGridSessionAssignment
             // 
+            this.dataGridSessionAssignment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridSessionAssignment.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridSessionAssignment.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridSessionAssignment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridSessionAssignment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridSessionAssignment.Location = new System.Drawing.Point(0, 0);
@@ -187,7 +201,7 @@
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(100, 269);
+            this.deleteButton.Location = new System.Drawing.Point(100, 366);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(72, 25);
             this.deleteButton.TabIndex = 15;
@@ -200,7 +214,7 @@
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(55, 269);
+            this.addButton.Location = new System.Drawing.Point(55, 366);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(72, 25);
             this.addButton.TabIndex = 14;
@@ -212,7 +226,7 @@
             // 
             this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(9, 269);
+            this.updateButton.Location = new System.Drawing.Point(9, 366);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(72, 23);
             this.updateButton.TabIndex = 13;
@@ -226,10 +240,10 @@
             this.timeSession.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.timeSession.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeSession.Location = new System.Drawing.Point(2, 198);
+            this.timeSession.Location = new System.Drawing.Point(3, 238);
             this.timeSession.Name = "timeSession";
             this.timeSession.ShowUpDown = true;
-            this.timeSession.Size = new System.Drawing.Size(179, 23);
+            this.timeSession.Size = new System.Drawing.Size(178, 23);
             this.timeSession.TabIndex = 4;
             // 
             // dateSession
@@ -238,7 +252,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateSession.CustomFormat = "yyyy-MM-dd";
             this.dateSession.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateSession.Location = new System.Drawing.Point(3, 169);
+            this.dateSession.Location = new System.Drawing.Point(3, 194);
             this.dateSession.Name = "dateSession";
             this.dateSession.Size = new System.Drawing.Size(178, 23);
             this.dateSession.TabIndex = 3;
@@ -247,8 +261,9 @@
             // 
             this.sessionStatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.sessionStatusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sessionStatusBox.FormattingEnabled = true;
-            this.sessionStatusBox.Location = new System.Drawing.Point(3, 140);
+            this.sessionStatusBox.Location = new System.Drawing.Point(3, 150);
             this.sessionStatusBox.Name = "sessionStatusBox";
             this.sessionStatusBox.Size = new System.Drawing.Size(178, 23);
             this.sessionStatusBox.TabIndex = 2;
@@ -257,21 +272,73 @@
             // 
             this.serviceProvidedBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.serviceProvidedBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.serviceProvidedBox.FormattingEnabled = true;
-            this.serviceProvidedBox.Location = new System.Drawing.Point(2, 111);
+            this.serviceProvidedBox.Location = new System.Drawing.Point(3, 106);
             this.serviceProvidedBox.Name = "serviceProvidedBox";
-            this.serviceProvidedBox.Size = new System.Drawing.Size(179, 23);
+            this.serviceProvidedBox.Size = new System.Drawing.Size(178, 23);
             this.serviceProvidedBox.TabIndex = 1;
             // 
             // clientBox
             // 
             this.clientBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.clientBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.clientBox.FormattingEnabled = true;
-            this.clientBox.Location = new System.Drawing.Point(2, 82);
+            this.clientBox.Location = new System.Drawing.Point(3, 62);
             this.clientBox.Name = "clientBox";
-            this.clientBox.Size = new System.Drawing.Size(179, 23);
+            this.clientBox.Size = new System.Drawing.Size(178, 23);
             this.clientBox.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 15);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Клиенты:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 15);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Предоставляемая услуга:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(3, 132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 15);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Статус сеанса:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 176);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Дата:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(3, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 15);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Время:";
             // 
             // SessionAssignment
             // 
@@ -316,5 +383,10 @@
         private ToolStripMenuItem sessionStatusMenuItem;
         private ToolStripMenuItem serviceTypeMenuItem;
         private ToolStripMenuItem sessionAssignmentMenuItem;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
     }
 }

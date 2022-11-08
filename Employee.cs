@@ -15,6 +15,7 @@ namespace TattooStudio
     public partial class Employee : Form
     {
         int rowId = 0;
+        int rule = AccessLevel.rule;
 
         public Employee()
         {
@@ -24,19 +25,19 @@ namespace TattooStudio
 
         private void databaseLoad()
         {
+            comboBox();
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
                     (@"select id_employee, surname as Фамилия, name as Имя, middlename as Отчество, Должность.title as Должность, 
                         work_experience as Опыт, salary as Зарплата
                         from Сотрудник
-                        JOIN Должность ON Должность.id_position = Сотрудник.id_position", connectionToDB.GetConnection());
+                        JOIN Должность ON Должность.id_position = Сотрудник.id_position
+                        WHERE title NOT LIKE '%_ату%' AND title NOT LIKE '%_ирсинг%' AND title NOT LIKE '%_атуаж%'", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
             dataGridEmployee.DataSource = dataTable;
             dataGridEmployee.Columns[0].Visible = false;
-
-            comboBox();
         }
 
         private void comboBox()
@@ -44,7 +45,8 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
             NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
                 $@"SELECT id_position, title
-                FROM Должность", connectionToDB.GetConnection());
+                FROM Должность
+                WHERE title NOT LIKE '%_ату%' AND title NOT LIKE '%_ирсинг%' AND title NOT LIKE '%_атуаж%'", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
             positionBox.DataSource = dataTable;
@@ -88,47 +90,63 @@ namespace TattooStudio
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            changeVisibleBox();
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                changeVisibleBox();
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Сотрудник SET surname='{employeeSurname.Text}', name='{employeeName.Text}', middlename='{employeeMiddlename.Text}', 
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"UPDATE Сотрудник SET surname='{employeeSurname.Text}', name='{employeeName.Text}', middlename='{employeeMiddlename.Text}', 
                     id_position='{positionBox.SelectedValue}', work_experience='{workExp.Value.ToString()}', salary='{salary.Value.ToString()}'
                     WHERE id_employee='{rowId}'", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-
-            dataGridEmployee.Refresh();
-            clearBox();
-            databaseLoad();
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary) 
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary) 
                     VALUES ('{employeeSurname.Text}', '{employeeName.Text}', '{employeeMiddlename.Text}', 
                     '{positionBox.SelectedValue}', '{workExp.Value.ToString()}', '{salary.Value.ToString()}')", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"DELETE FROM Сотрудник WHERE id_employee={rowId}", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"DELETE FROM Сотрудник WHERE id_employee={rowId}", connectionToDB.GetConnection());
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void changeVisibleBox()

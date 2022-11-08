@@ -45,6 +45,7 @@
             this.deleteButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
             this.positionBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -66,6 +67,8 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
             this.splitContainer.Panel2.Controls.Add(this.updateButton);
             this.splitContainer.Panel2.Controls.Add(this.deleteButton);
@@ -77,8 +80,12 @@
             // 
             // dataGridPosition
             // 
+            this.dataGridPosition.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridPosition.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridPosition.BackgroundColor = System.Drawing.Color.Black;
             this.dataGridPosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPosition.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridPosition.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.dataGridPosition.Location = new System.Drawing.Point(0, 0);
             this.dataGridPosition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridPosition.Name = "dataGridPosition";
@@ -195,7 +202,7 @@
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(99, 226);
+            this.deleteButton.Location = new System.Drawing.Point(98, 227);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(74, 25);
             this.deleteButton.TabIndex = 27;
@@ -208,7 +215,7 @@
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(53, 226);
+            this.addButton.Location = new System.Drawing.Point(55, 227);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(74, 25);
             this.addButton.TabIndex = 26;
@@ -218,11 +225,21 @@
             // 
             // positionBox
             // 
-            this.positionBox.Location = new System.Drawing.Point(3, 61);
+            this.positionBox.Location = new System.Drawing.Point(3, 91);
             this.positionBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.positionBox.Name = "positionBox";
             this.positionBox.Size = new System.Drawing.Size(179, 23);
             this.positionBox.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 15);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Название должности:";
             // 
             // Position
             // 
@@ -264,5 +281,6 @@
         private ToolStripMenuItem sessionStatusMenuItem;
         private ToolStripMenuItem serviceTypeMenuItem;
         private ToolStripMenuItem sessionAssignmentMenuItem;
+        private Label label1;
     }
 }

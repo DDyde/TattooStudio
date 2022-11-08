@@ -72,6 +72,7 @@
             // 
             // splitClientContainer.Panel2
             // 
+            this.splitClientContainer.Panel2.BackColor = System.Drawing.Color.Black;
             this.splitClientContainer.Panel2.Controls.Add(this.deleteButton);
             this.splitClientContainer.Panel2.Controls.Add(this.dateBirthBox);
             this.splitClientContainer.Panel2.Controls.Add(this.addButton);
@@ -92,6 +93,7 @@
             // 
             this.dataGridClient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridClient.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridClient.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridClient.Location = new System.Drawing.Point(0, 0);
@@ -114,6 +116,7 @@
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Visible = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // dateBirthBox
             // 
@@ -154,6 +157,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(6, 227);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 15);
@@ -165,6 +169,7 @@
             this.middlenameClientLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.middlenameClientLabel.AutoSize = true;
+            this.middlenameClientLabel.ForeColor = System.Drawing.Color.White;
             this.middlenameClientLabel.Location = new System.Drawing.Point(6, 173);
             this.middlenameClientLabel.Name = "middlenameClientLabel";
             this.middlenameClientLabel.Size = new System.Drawing.Size(58, 15);
@@ -176,6 +181,7 @@
             this.nameClientLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameClientLabel.AutoSize = true;
+            this.nameClientLabel.ForeColor = System.Drawing.Color.White;
             this.nameClientLabel.Location = new System.Drawing.Point(6, 111);
             this.nameClientLabel.Name = "nameClientLabel";
             this.nameClientLabel.Size = new System.Drawing.Size(31, 15);
@@ -187,6 +193,7 @@
             this.surnameClientLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.surnameClientLabel.AutoSize = true;
+            this.surnameClientLabel.ForeColor = System.Drawing.Color.White;
             this.surnameClientLabel.Location = new System.Drawing.Point(6, 54);
             this.surnameClientLabel.Name = "surnameClientLabel";
             this.surnameClientLabel.Size = new System.Drawing.Size(58, 15);

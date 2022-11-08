@@ -14,6 +14,7 @@ namespace TattooStudio
     public partial class SesssionStatus : Form
     {
         int rowId = 0;
+        int rule = AccessLevel.rule;
 
         public SesssionStatus()
         {
@@ -26,7 +27,8 @@ namespace TattooStudio
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
-                    (@"select * from Статус_сеанса", connectionToDB.GetConnection());
+                    (@"select id_session_status, title as Название
+                    from Статус_сеанса", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
             npgsqlDataAdapter.Fill(dataTable);
             dataGridSessionStatus.DataSource = dataTable;
@@ -64,32 +66,46 @@ namespace TattooStudio
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            changeVisibleBox();
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                changeVisibleBox();
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Статус_сеанса SET title='{sessionStatusBox.Text}'
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"UPDATE Статус_сеанса SET title='{sessionStatusBox.Text}'
                     WHERE id_session_status='{rowId}'", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            dataGridSessionStatus.Refresh();
-            clearBox();
-            databaseLoad();
+                dataGridSessionStatus.Refresh();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Статус_сеанса (title) 
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"INSERT INTO Статус_сеанса (title) 
                     VALUES ('{sessionStatusBox.Text}')", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void changeVisibleBox()
@@ -175,15 +191,22 @@ namespace TattooStudio
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"DELETE FROM Статус_сеанса WHERE id_session_status={rowId}", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"DELETE FROM Статус_сеанса WHERE id_session_status={rowId}", connectionToDB.GetConnection());
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
     }
 }

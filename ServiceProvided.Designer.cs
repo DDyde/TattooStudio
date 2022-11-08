@@ -46,6 +46,8 @@
             this.addButton = new System.Windows.Forms.Button();
             this.employeeBox = new System.Windows.Forms.ComboBox();
             this.typeOfServiceBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -66,6 +68,9 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.splitContainer.Panel2.Controls.Add(this.label2);
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
             this.splitContainer.Panel2.Controls.Add(this.updateButton);
             this.splitContainer.Panel2.Controls.Add(this.deleteButton);
@@ -78,6 +83,9 @@
             // 
             // dataGridServiceProvided
             // 
+            this.dataGridServiceProvided.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridServiceProvided.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridServiceProvided.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dataGridServiceProvided.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridServiceProvided.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridServiceProvided.Location = new System.Drawing.Point(0, 0);
@@ -217,19 +225,41 @@
             // 
             // employeeBox
             // 
+            this.employeeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.employeeBox.FormattingEnabled = true;
-            this.employeeBox.Location = new System.Drawing.Point(2, 129);
+            this.employeeBox.Location = new System.Drawing.Point(2, 107);
             this.employeeBox.Name = "employeeBox";
             this.employeeBox.Size = new System.Drawing.Size(179, 23);
             this.employeeBox.TabIndex = 1;
             // 
             // typeOfServiceBox
             // 
+            this.typeOfServiceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeOfServiceBox.FormattingEnabled = true;
             this.typeOfServiceBox.Location = new System.Drawing.Point(2, 63);
             this.typeOfServiceBox.Name = "typeOfServiceBox";
             this.typeOfServiceBox.Size = new System.Drawing.Size(179, 23);
             this.typeOfServiceBox.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(2, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 15);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Вид услуги:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 15);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Сотрудник:";
             // 
             // ServiceProvided
             // 
@@ -271,5 +301,7 @@
         private ToolStripMenuItem sessionStatusMenuItem;
         private ToolStripMenuItem serviceTypeMenuItem;
         private ToolStripMenuItem sessionAssignmentMenuItem;
+        private Label label2;
+        private Label label1;
     }
 }

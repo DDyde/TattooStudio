@@ -15,6 +15,7 @@ namespace TattooStudio
     public partial class SessionAssignment : Form
     {
         int rowId=0;
+        int rule = AccessLevel.rule;
 
         public SessionAssignment()
         {
@@ -28,7 +29,7 @@ namespace TattooStudio
 
             NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
                     (@"SELECT Назначение_сеанса.id_session_asignment, CONCAT_WS(' ', Клиент.surname, Клиент.name, Клиент.middlename) as ФИО,
-                        Вид_услуги.title as Вид, Статус_сеанса.title as Статус,date_session as Дата, time_session as Время
+                        Вид_услуги.title as Вид_услуги, Статус_сеанса.title as Статус_сеанса,date_session as Дата, time_session as Время
                         FROM Назначение_сеанса
                         JOIN Клиент ON Клиент.id_client = Назначение_сеанса.id_client
                         JOIN Предоставляемая_услуга ON Предоставляемая_услуга.id_service_provided = Назначение_сеанса.id_service_provided
@@ -116,34 +117,48 @@ namespace TattooStudio
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            changeVisibleBox();
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                changeVisibleBox();
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"UPDATE Назначение_сеанса SET id_client='{clientBox.SelectedValue}', date_session='{dateSession.Text}',  time_session='{timeSession.Text}',  
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"UPDATE Назначение_сеанса SET id_client='{clientBox.SelectedValue}', date_session='{dateSession.Text}',  time_session='{timeSession.Text}',  
                     id_session_status='{sessionStatusBox.SelectedValue}', id_service_provided='{serviceProvidedBox.SelectedValue}'
                     WHERE id_session_asignment='{rowId}'", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            dataGridSessionAssignment.Refresh();
-            clearBox();
-            databaseLoad();
+                dataGridSessionAssignment.Refresh();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"INSERT INTO Назначение_сеанса (id_client, date_session, time_session, id_session_status, id_service_provided) 
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"INSERT INTO Назначение_сеанса (id_client, date_session, time_session, id_session_status, id_service_provided) 
                     VALUES ('{clientBox.SelectedValue}', '{dateSession.Text}', '{timeSession.Text}', 
                     '{sessionStatusBox.SelectedValue}', '{serviceProvidedBox.SelectedValue}')", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void changeVisibleBox()
@@ -155,15 +170,22 @@ namespace TattooStudio
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
+            if (rule == 1 || rule == 2)
+            {
+                ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"DELETE FROM Назначение_сеанса WHERE id_session_asignment={rowId}", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
+                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                   ($@"DELETE FROM Назначение_сеанса WHERE id_session_asignment={rowId}", connectionToDB.GetConnection());
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
 
-            clearBox();
-            databaseLoad();
+                clearBox();
+                databaseLoad();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточный уровень доступа");
+            }
         }
 
         private void sessionAssignmentMenuItem_Click(object sender, EventArgs e)
@@ -175,13 +197,9 @@ namespace TattooStudio
 
         private void clearBox()
         {
-            //foreach (TextBox textBox in splitSessionAssignmentContainer.Panel2.Controls.OfType<TextBox>())
-            //{
-            //    addButton.Visible = true;
-            //    updateButton.Visible = false;
-            //    deleteButton.Visible = false;
-            //    textBox.Clear();
-            //}
+            addButton.Visible = true;
+            updateButton.Visible = false;
+            deleteButton.Visible = false;  
         }
 
         private void clientToolStripMenuItem_Click(object sender, EventArgs e)
