@@ -64,6 +64,7 @@
             // 
             this.splitClientContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitClientContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitClientContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitClientContainer.Name = "splitClientContainer";
             // 
             // splitClientContainer.Panel1
@@ -85,8 +86,9 @@
             this.splitClientContainer.Panel2.Controls.Add(this.clientName);
             this.splitClientContainer.Panel2.Controls.Add(this.clientSurname);
             this.splitClientContainer.Panel2.Controls.Add(this.menuStrip);
-            this.splitClientContainer.Size = new System.Drawing.Size(800, 450);
-            this.splitClientContainer.SplitterDistance = 612;
+            this.splitClientContainer.Size = new System.Drawing.Size(914, 600);
+            this.splitClientContainer.SplitterDistance = 699;
+            this.splitClientContainer.SplitterWidth = 5;
             this.splitClientContainer.TabIndex = 0;
             // 
             // dataGridClient
@@ -97,11 +99,12 @@
             this.dataGridClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridClient.Location = new System.Drawing.Point(0, 0);
+            this.dataGridClient.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridClient.Name = "dataGridClient";
             this.dataGridClient.ReadOnly = true;
             this.dataGridClient.RowHeadersWidth = 51;
             this.dataGridClient.RowTemplate.Height = 25;
-            this.dataGridClient.Size = new System.Drawing.Size(612, 450);
+            this.dataGridClient.Size = new System.Drawing.Size(699, 600);
             this.dataGridClient.TabIndex = 0;
             this.dataGridClient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridClient_CellClick);
             // 
@@ -109,9 +112,10 @@
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(97, 321);
+            this.deleteButton.Location = new System.Drawing.Point(111, 428);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(72, 25);
+            this.deleteButton.Size = new System.Drawing.Size(82, 33);
             this.deleteButton.TabIndex = 12;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -122,18 +126,20 @@
             // 
             this.dateBirthBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateBirthBox.Location = new System.Drawing.Point(6, 245);
+            this.dateBirthBox.Location = new System.Drawing.Point(7, 327);
+            this.dateBirthBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateBirthBox.Name = "dateBirthBox";
-            this.dateBirthBox.Size = new System.Drawing.Size(170, 23);
+            this.dateBirthBox.Size = new System.Drawing.Size(194, 27);
             this.dateBirthBox.TabIndex = 11;
             // 
             // addButton
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(52, 321);
+            this.addButton.Location = new System.Drawing.Point(59, 428);
+            this.addButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(72, 25);
+            this.addButton.Size = new System.Drawing.Size(82, 33);
             this.addButton.TabIndex = 10;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = true;
@@ -143,9 +149,10 @@
             // 
             this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(6, 321);
+            this.updateButton.Location = new System.Drawing.Point(7, 428);
+            this.updateButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(72, 23);
+            this.updateButton.Size = new System.Drawing.Size(82, 31);
             this.updateButton.TabIndex = 9;
             this.updateButton.Text = "Изменить";
             this.updateButton.UseVisualStyleBackColor = true;
@@ -158,9 +165,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 227);
+            this.label1.Location = new System.Drawing.Point(7, 303);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 15);
+            this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Дата рождения";
             // 
@@ -170,9 +177,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.middlenameClientLabel.AutoSize = true;
             this.middlenameClientLabel.ForeColor = System.Drawing.Color.White;
-            this.middlenameClientLabel.Location = new System.Drawing.Point(6, 173);
+            this.middlenameClientLabel.Location = new System.Drawing.Point(7, 231);
             this.middlenameClientLabel.Name = "middlenameClientLabel";
-            this.middlenameClientLabel.Size = new System.Drawing.Size(58, 15);
+            this.middlenameClientLabel.Size = new System.Drawing.Size(72, 20);
             this.middlenameClientLabel.TabIndex = 6;
             this.middlenameClientLabel.Text = "Отчество";
             // 
@@ -182,9 +189,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nameClientLabel.AutoSize = true;
             this.nameClientLabel.ForeColor = System.Drawing.Color.White;
-            this.nameClientLabel.Location = new System.Drawing.Point(6, 111);
+            this.nameClientLabel.Location = new System.Drawing.Point(7, 148);
             this.nameClientLabel.Name = "nameClientLabel";
-            this.nameClientLabel.Size = new System.Drawing.Size(31, 15);
+            this.nameClientLabel.Size = new System.Drawing.Size(39, 20);
             this.nameClientLabel.TabIndex = 5;
             this.nameClientLabel.Text = "Имя";
             // 
@@ -194,9 +201,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.surnameClientLabel.AutoSize = true;
             this.surnameClientLabel.ForeColor = System.Drawing.Color.White;
-            this.surnameClientLabel.Location = new System.Drawing.Point(6, 54);
+            this.surnameClientLabel.Location = new System.Drawing.Point(7, 72);
             this.surnameClientLabel.Name = "surnameClientLabel";
-            this.surnameClientLabel.Size = new System.Drawing.Size(58, 15);
+            this.surnameClientLabel.Size = new System.Drawing.Size(73, 20);
             this.surnameClientLabel.TabIndex = 4;
             this.surnameClientLabel.Text = "Фамилия";
             // 
@@ -204,27 +211,36 @@
             // 
             this.clientMiddlename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.clientMiddlename.Location = new System.Drawing.Point(2, 191);
+            this.clientMiddlename.BackColor = System.Drawing.SystemColors.InfoText;
+            this.clientMiddlename.ForeColor = System.Drawing.SystemColors.Info;
+            this.clientMiddlename.Location = new System.Drawing.Point(2, 255);
+            this.clientMiddlename.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clientMiddlename.Name = "clientMiddlename";
-            this.clientMiddlename.Size = new System.Drawing.Size(175, 23);
+            this.clientMiddlename.Size = new System.Drawing.Size(199, 27);
             this.clientMiddlename.TabIndex = 2;
             // 
             // clientName
             // 
             this.clientName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.clientName.Location = new System.Drawing.Point(3, 129);
+            this.clientName.BackColor = System.Drawing.SystemColors.InfoText;
+            this.clientName.ForeColor = System.Drawing.SystemColors.Info;
+            this.clientName.Location = new System.Drawing.Point(3, 172);
+            this.clientName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clientName.Name = "clientName";
-            this.clientName.Size = new System.Drawing.Size(175, 23);
+            this.clientName.Size = new System.Drawing.Size(199, 27);
             this.clientName.TabIndex = 1;
             // 
             // clientSurname
             // 
             this.clientSurname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.clientSurname.Location = new System.Drawing.Point(3, 72);
+            this.clientSurname.BackColor = System.Drawing.SystemColors.InfoText;
+            this.clientSurname.ForeColor = System.Drawing.SystemColors.Info;
+            this.clientSurname.Location = new System.Drawing.Point(3, 96);
+            this.clientSurname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clientSurname.Name = "clientSurname";
-            this.clientSurname.Size = new System.Drawing.Size(176, 23);
+            this.clientSurname.Size = new System.Drawing.Size(201, 27);
             this.clientSurname.TabIndex = 0;
             // 
             // menuStrip
@@ -234,7 +250,8 @@
             this.менюToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(184, 24);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip.Size = new System.Drawing.Size(210, 30);
             this.menuStrip.TabIndex = 3;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -251,78 +268,79 @@
             this.serviceTypeMenuItem,
             this.sessionAssignmentToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(215, 22);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(268, 26);
             this.toolStripTextBox1.Text = "Клиенты";
             // 
             // toolStripEmployee
             // 
             this.toolStripEmployee.Name = "toolStripEmployee";
-            this.toolStripEmployee.Size = new System.Drawing.Size(215, 22);
+            this.toolStripEmployee.Size = new System.Drawing.Size(268, 26);
             this.toolStripEmployee.Text = "Сотрудники";
             this.toolStripEmployee.Click += new System.EventHandler(this.toolStripEmployee_Click);
             // 
             // мастераToolStripMenuItem
             // 
             this.мастераToolStripMenuItem.Name = "мастераToolStripMenuItem";
-            this.мастераToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.мастераToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.мастераToolStripMenuItem.Text = "Мастера";
             this.мастераToolStripMenuItem.Click += new System.EventHandler(this.мастераToolStripMenuItem_Click);
             // 
             // typeOfServiceMenuItem
             // 
             this.typeOfServiceMenuItem.Name = "typeOfServiceMenuItem";
-            this.typeOfServiceMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.typeOfServiceMenuItem.Size = new System.Drawing.Size(268, 26);
             this.typeOfServiceMenuItem.Text = "Виды услуг";
             this.typeOfServiceMenuItem.Click += new System.EventHandler(this.typeOfServiceMenuItem_Click);
             // 
             // positionMenuItem
             // 
             this.positionMenuItem.Name = "positionMenuItem";
-            this.positionMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.positionMenuItem.Size = new System.Drawing.Size(268, 26);
             this.positionMenuItem.Text = "Должности";
             this.positionMenuItem.Click += new System.EventHandler(this.positionMenuItem_Click);
             // 
             // serviceProvidedMenuItem
             // 
             this.serviceProvidedMenuItem.Name = "serviceProvidedMenuItem";
-            this.serviceProvidedMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.serviceProvidedMenuItem.Size = new System.Drawing.Size(268, 26);
             this.serviceProvidedMenuItem.Text = "Предоставляемые услуги";
             this.serviceProvidedMenuItem.Click += new System.EventHandler(this.serviceProvidedMenuItem_Click);
             // 
             // sessionStatusMenuItem
             // 
             this.sessionStatusMenuItem.Name = "sessionStatusMenuItem";
-            this.sessionStatusMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.sessionStatusMenuItem.Size = new System.Drawing.Size(268, 26);
             this.sessionStatusMenuItem.Text = "Статус сеанса";
             this.sessionStatusMenuItem.Click += new System.EventHandler(this.sessionStatusMenuItem_Click);
             // 
             // serviceTypeMenuItem
             // 
             this.serviceTypeMenuItem.Name = "serviceTypeMenuItem";
-            this.serviceTypeMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.serviceTypeMenuItem.Size = new System.Drawing.Size(268, 26);
             this.serviceTypeMenuItem.Text = "Тип услуг";
             this.serviceTypeMenuItem.Click += new System.EventHandler(this.serviceTypeMenuItem_Click);
             // 
             // sessionAssignmentToolStripMenuItem
             // 
             this.sessionAssignmentToolStripMenuItem.Name = "sessionAssignmentToolStripMenuItem";
-            this.sessionAssignmentToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.sessionAssignmentToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.sessionAssignmentToolStripMenuItem.Text = "Назначение сеанса";
             this.sessionAssignmentToolStripMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
             // 
             // Client
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 600);
             this.Controls.Add(this.splitClientContainer);
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Client";
             this.Text = "Form1";
             this.splitClientContainer.Panel1.ResumeLayout(false);
