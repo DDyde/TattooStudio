@@ -20,9 +20,7 @@ namespace TattooStudio
         int rowId = 0;
         List<string> imagePath = new List<string>();
         int curentImage = 0;
-        string profileImage = null;
         string fName = null;
-        string workImagePath = null;
         int rule = AccessLevel.rule;
 
         public ArtistEdit()
@@ -55,13 +53,13 @@ namespace TattooStudio
             artistSurname.Text = dataTable.Rows[0][1].ToString();
             artistName.Text = dataTable.Rows[0][2].ToString();
             artistMiddlename.Text = dataTable.Rows[0][3].ToString();
-            artistPosition.SelectedValue = dataTable.Rows[0][6];
             workExp.Text = dataTable.Rows[0][5].ToString();
+            artistPosition.SelectedValue = dataTable.Rows[0][6];
             salary.Text = dataTable.Rows[0][7].ToString();
-            profileImage = dataTable.Rows[0][8].ToString();
+            string profileImage = dataTable.Rows[0][8].ToString();
             fName = dataTable.Rows[0][9].ToString();
             getProfileImg(profileImage, fName);
-            getImageWork();
+            getImageWork(fName);
         }
 
         private void getPosition()
@@ -91,21 +89,12 @@ namespace TattooStudio
                 var fs = File.OpenRead(@".\Photo\profile\defultProfile.jpg");
                 artistProfile.Image = Image.FromStream(fs);
                 fs.Close();
-            }            
+            }
         }
 
-        private void getImageWork()
+        private void getImageWork(string workFolder)
         {
-            ConnectionToDB connectionToDB = new ConnectionToDB();
-
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
-               ($@"SELECT image_work FROM employeemaster
-                        WHERE id_employee={rowId}", connectionToDB.GetConnection());
-            DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-            workImagePath = dataTable.Rows[0][0].ToString();
-
-            var directoryImages = Directory.GetFiles($@".\{workImagePath}\{fName}\work\");
+            var directoryImages = Directory.GetFiles($@".\Photo\profile\{workFolder}\work\");
             imagePath.Clear();
             if (directoryImages.Length != 0)
             {
@@ -116,7 +105,7 @@ namespace TattooStudio
                 var fs = File.OpenRead(imagePath[curentImage]);
                 imageWork.ImageLocation = fs.Name;
                 fs.Close();
-            }            
+            }
 
         }
 
@@ -127,8 +116,6 @@ namespace TattooStudio
                 var fs = File.OpenRead(imagePath[curentImage]);
                 imageWork.ImageLocation = fs.Name;
                 fs.Close();
-                //imageWork.ImageLocation = imagePath[curentImage];
-                //imageWork.Load(imageWork.ImageLocation);
             }
             else
             {
@@ -138,16 +125,13 @@ namespace TattooStudio
                     var fs = File.OpenRead(imagePath[curentImage]);
                     imageWork.ImageLocation = fs.Name;
                     fs.Close();
-                }               
-                
-                //imageWork.ImageLocation = imagePath[curentImage];
-                //imageWork.Load(imageWork.ImageLocation);
+                }
             }
         }
 
         private void prevImage_Click(object sender, EventArgs e)
         {
-            if (--curentImage >=0)
+            if (--curentImage >= 0)
             {
                 var fs = File.OpenRead(imagePath[curentImage]);
                 imageWork.ImageLocation = fs.Name;
@@ -178,7 +162,7 @@ namespace TattooStudio
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string oldImage = artistProfile.ImageLocation;
-                    string directoryImg = $@"{workImagePath}{fName}";
+                    string directoryImg = $@".\Photo\profile\{fName}";
 
                     if (directoryImg != "")
                     {
@@ -251,13 +235,12 @@ namespace TattooStudio
                 Directory.CreateDirectory($@".\Photo\profile\{nickNameBox.Text}\");
                 Directory.CreateDirectory($@".\Photo\profile\{nickNameBox.Text}\work\");
 
-                NpgsqlCommand sqlCommand = new NpgsqlCommand($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary, image_employee, nickname, image_work)
+                NpgsqlCommand sqlCommand = new NpgsqlCommand($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary, image_employee, nickname)
                                                             VALUES ('{artistSurname.Text}', '{artistName.Text}', '{artistMiddlename.Text}', '{artistPosition.SelectedValue}',
-                                                            '{workExp.Text}', '{salary.Text}', @profileImageArtist, @nickName, 'Photo\profile\')", connectionToDB.GetConnection());
+                                                            '{workExp.Text}', '{salary.Text}', @profileImageArtist, @nickName)", connectionToDB.GetConnection());
                 sqlCommand.Parameters.AddWithValue("@profileImageArtist", newImageName);
                 sqlCommand.Parameters.AddWithValue("@nickName", nickNameBox.Text);
 
-                workImagePath = @"Photo\profile\";
                 fName = nickNameBox.Text;
 
                 NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(sqlCommand);
@@ -297,8 +280,8 @@ namespace TattooStudio
                     if (fName != null)
                     {
                         string nameImage = Path.GetFileName(openFileDialog.FileName);
-                        File.Copy(openFileDialog.FileName, $@".\{workImagePath}\{fName}\work\{nameImage}");
-                        getImageWork();
+                        File.Copy(openFileDialog.FileName, $@".\Photo\profile\{fName}\work\{nameImage}");
+                        getImageWork(fName);
                     }
 
                 }
@@ -316,16 +299,15 @@ namespace TattooStudio
                 if (imagePath.Count != 0)
                 {
                     File.Delete(imagePath[curentImage]);
-                    //imageWork.Image = Image.FromFile(imagePath[curentImage]);
                     curentImage = 0;
-                    getImageWork();
+                    getImageWork(fName);
                 }
             }
             else
             {
                 MessageBox.Show("Недостаточный уровень доступа");
             }
-            
+
         }
 
         private void deleteButton_Click(object sender, EventArgs e)

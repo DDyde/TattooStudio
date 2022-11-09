@@ -84,13 +84,6 @@ namespace TattooStudio
             this.Hide();
         }
 
-        //private void мастераToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Artist artist = new Artist();
-        //    artist.Show();
-        //    this.Hide();
-        //}
-
         private void typeOfServiceMenuItem_Click(object sender, EventArgs e)
         {
             TypeOfService typeOfService = new TypeOfService();
@@ -146,7 +139,7 @@ namespace TattooStudio
             string searchValue = comboBoxPosition.Text;
             try
             {
-                dataTable.DefaultView.RowFilter = $@"Должность LIKE '%{searchValue}%'";
+                dataTable.DefaultView.RowFilter = $@"Должность = '{searchValue}'";
             }
             catch (Exception ex)
             {
