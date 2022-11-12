@@ -30,6 +30,9 @@
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridTypeOfService = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,9 +50,6 @@
             this.typeServiceComboBox = new System.Windows.Forms.ComboBox();
             this.priceBox = new System.Windows.Forms.NumericUpDown();
             this.typeServiceBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -102,6 +102,36 @@
             this.dataGridTypeOfService.Size = new System.Drawing.Size(612, 450);
             this.dataGridTypeOfService.TabIndex = 0;
             this.dataGridTypeOfService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridTypeOfService_CellClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(4, 181);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 15);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Цена:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(4, 124);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 15);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Тип услуги:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(4, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(102, 15);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Название услуги:";
             // 
             // menuStrip
             // 
@@ -245,6 +275,7 @@
             // 
             this.priceBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.priceBox.DecimalPlaces = 2;
             this.priceBox.Location = new System.Drawing.Point(4, 198);
             this.priceBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.priceBox.Maximum = new decimal(new int[] {
@@ -263,36 +294,6 @@
             this.typeServiceBox.Name = "typeServiceBox";
             this.typeServiceBox.Size = new System.Drawing.Size(177, 23);
             this.typeServiceBox.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 15);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Название услуги:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(4, 124);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 15);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Тип услуги:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(4, 181);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 15);
-            this.label3.TabIndex = 34;
-            this.label3.Text = "Цена:";
             // 
             // TypeOfService
             // 

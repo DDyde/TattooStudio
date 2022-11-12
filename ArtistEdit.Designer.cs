@@ -48,10 +48,12 @@
             this.reportButton = new System.Windows.Forms.Button();
             this.labelWorkExp = new System.Windows.Forms.Label();
             this.labelSalary = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.artistProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workExp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageWork)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // artistProfile
@@ -98,7 +100,13 @@
             // 
             // salary
             // 
+            this.salary.DecimalPlaces = 2;
             this.salary.Location = new System.Drawing.Point(12, 526);
+            this.salary.Maximum = new decimal(new int[] {
+            1215752191,
+            23,
+            0,
+            0});
             this.salary.Name = "salary";
             this.salary.Size = new System.Drawing.Size(120, 23);
             this.salary.TabIndex = 5;
@@ -114,18 +122,20 @@
             // imageWork
             // 
             this.imageWork.BackColor = System.Drawing.Color.Transparent;
-            this.imageWork.Location = new System.Drawing.Point(348, 23);
+            this.imageWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageWork.Location = new System.Drawing.Point(15, 0);
             this.imageWork.Name = "imageWork";
-            this.imageWork.Size = new System.Drawing.Size(632, 402);
+            this.imageWork.Size = new System.Drawing.Size(648, 410);
             this.imageWork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageWork.TabIndex = 7;
             this.imageWork.TabStop = false;
             // 
             // prevImage
             // 
-            this.prevImage.Location = new System.Drawing.Point(333, 22);
+            this.prevImage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.prevImage.Location = new System.Drawing.Point(0, 0);
             this.prevImage.Name = "prevImage";
-            this.prevImage.Size = new System.Drawing.Size(15, 402);
+            this.prevImage.Size = new System.Drawing.Size(15, 410);
             this.prevImage.TabIndex = 8;
             this.prevImage.Text = "<";
             this.prevImage.UseVisualStyleBackColor = true;
@@ -133,9 +143,10 @@
             // 
             // nextImage
             // 
-            this.nextImage.Location = new System.Drawing.Point(980, 23);
+            this.nextImage.Dock = System.Windows.Forms.DockStyle.Right;
+            this.nextImage.Location = new System.Drawing.Point(663, 0);
             this.nextImage.Name = "nextImage";
-            this.nextImage.Size = new System.Drawing.Size(15, 402);
+            this.nextImage.Size = new System.Drawing.Size(15, 410);
             this.nextImage.TabIndex = 9;
             this.nextImage.Text = ">";
             this.nextImage.UseVisualStyleBackColor = true;
@@ -154,6 +165,7 @@
             // 
             // addImageButton
             // 
+            this.addImageButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.addImageButton.Location = new System.Drawing.Point(543, 431);
             this.addImageButton.Name = "addImageButton";
             this.addImageButton.Size = new System.Drawing.Size(75, 23);
@@ -164,6 +176,7 @@
             // 
             // deleteImageButton
             // 
+            this.deleteImageButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.deleteImageButton.Location = new System.Drawing.Point(624, 431);
             this.deleteImageButton.Name = "deleteImageButton";
             this.deleteImageButton.Size = new System.Drawing.Size(75, 23);
@@ -243,12 +256,26 @@
             this.labelSalary.TabIndex = 21;
             this.labelSalary.Text = "Оплата:";
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.imageWork);
+            this.panel1.Controls.Add(this.prevImage);
+            this.panel1.Controls.Add(this.nextImage);
+            this.panel1.Location = new System.Drawing.Point(326, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(678, 410);
+            this.panel1.TabIndex = 22;
+            // 
             // ArtistEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1019, 566);
+            this.ClientSize = new System.Drawing.Size(1031, 566);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelSalary);
             this.Controls.Add(this.labelWorkExp);
             this.Controls.Add(this.reportButton);
@@ -259,9 +286,6 @@
             this.Controls.Add(this.deleteImageButton);
             this.Controls.Add(this.addImageButton);
             this.Controls.Add(this.updateButton);
-            this.Controls.Add(this.nextImage);
-            this.Controls.Add(this.prevImage);
-            this.Controls.Add(this.imageWork);
             this.Controls.Add(this.artistMiddlename);
             this.Controls.Add(this.salary);
             this.Controls.Add(this.artistPosition);
@@ -276,6 +300,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.workExp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageWork)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,5 +328,6 @@
         private Button reportButton;
         private Label labelWorkExp;
         private Label labelSalary;
+        private Panel panel1;
     }
 }

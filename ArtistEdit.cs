@@ -53,11 +53,11 @@ namespace TattooStudio
             artistSurname.Text = dataTable.Rows[0][1].ToString();
             artistName.Text = dataTable.Rows[0][2].ToString();
             artistMiddlename.Text = dataTable.Rows[0][3].ToString();
-            workExp.Text = dataTable.Rows[0][5].ToString();
-            artistPosition.SelectedValue = dataTable.Rows[0][6];
-            salary.Text = dataTable.Rows[0][7].ToString();
-            string profileImage = dataTable.Rows[0][8].ToString();
-            fName = dataTable.Rows[0][9].ToString();
+            workExp.Text = dataTable.Rows[0][4].ToString();
+            artistPosition.SelectedValue = dataTable.Rows[0][5];
+            salary.Text = dataTable.Rows[0][6].ToString();
+            string profileImage = dataTable.Rows[0][7].ToString();
+            fName = dataTable.Rows[0][8].ToString();
             getProfileImg(profileImage, fName);
             getImageWork(fName);
         }
@@ -235,7 +235,7 @@ namespace TattooStudio
                 Directory.CreateDirectory($@".\Photo\profile\{nickNameBox.Text}\");
                 Directory.CreateDirectory($@".\Photo\profile\{nickNameBox.Text}\work\");
 
-                NpgsqlCommand sqlCommand = new NpgsqlCommand($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary, image_employee, nickname)
+                NpgsqlCommand sqlCommand = new NpgsqlCommand($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary, image_employee, image_work_folder)
                                                             VALUES ('{artistSurname.Text}', '{artistName.Text}', '{artistMiddlename.Text}', '{artistPosition.SelectedValue}',
                                                             '{workExp.Text}', '{salary.Text}', @profileImageArtist, @nickName)", connectionToDB.GetConnection());
                 sqlCommand.Parameters.AddWithValue("@profileImageArtist", newImageName);
