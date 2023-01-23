@@ -125,7 +125,7 @@
             this.imageWork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageWork.Location = new System.Drawing.Point(15, 0);
             this.imageWork.Name = "imageWork";
-            this.imageWork.Size = new System.Drawing.Size(648, 410);
+            this.imageWork.Size = new System.Drawing.Size(636, 410);
             this.imageWork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageWork.TabIndex = 7;
             this.imageWork.TabStop = false;
@@ -144,7 +144,7 @@
             // nextImage
             // 
             this.nextImage.Dock = System.Windows.Forms.DockStyle.Right;
-            this.nextImage.Location = new System.Drawing.Point(663, 0);
+            this.nextImage.Location = new System.Drawing.Point(651, 0);
             this.nextImage.Name = "nextImage";
             this.nextImage.Size = new System.Drawing.Size(15, 410);
             this.nextImage.TabIndex = 9;
@@ -154,7 +154,8 @@
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(462, 528);
+            this.updateButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.updateButton.Location = new System.Drawing.Point(456, 528);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(75, 23);
             this.updateButton.TabIndex = 10;
@@ -166,7 +167,7 @@
             // addImageButton
             // 
             this.addImageButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.addImageButton.Location = new System.Drawing.Point(543, 431);
+            this.addImageButton.Location = new System.Drawing.Point(537, 431);
             this.addImageButton.Name = "addImageButton";
             this.addImageButton.Size = new System.Drawing.Size(75, 23);
             this.addImageButton.TabIndex = 13;
@@ -177,7 +178,7 @@
             // deleteImageButton
             // 
             this.deleteImageButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.deleteImageButton.Location = new System.Drawing.Point(624, 431);
+            this.deleteImageButton.Location = new System.Drawing.Point(618, 431);
             this.deleteImageButton.Name = "deleteImageButton";
             this.deleteImageButton.Size = new System.Drawing.Size(75, 23);
             this.deleteImageButton.TabIndex = 14;
@@ -197,7 +198,8 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(543, 528);
+            this.addButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.addButton.Location = new System.Drawing.Point(537, 528);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 16;
@@ -210,14 +212,15 @@
             // 
             this.nickNameBox.Location = new System.Drawing.Point(187, 526);
             this.nickNameBox.Name = "nickNameBox";
-            this.nickNameBox.PlaceholderText = "nick";
+            this.nickNameBox.PlaceholderText = "Имя папки";
             this.nickNameBox.Size = new System.Drawing.Size(100, 23);
             this.nickNameBox.TabIndex = 17;
             this.nickNameBox.Visible = false;
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(624, 529);
+            this.deleteButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.deleteButton.Location = new System.Drawing.Point(618, 529);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(75, 23);
             this.deleteButton.TabIndex = 18;
@@ -228,7 +231,8 @@
             // 
             // reportButton
             // 
-            this.reportButton.Location = new System.Drawing.Point(921, 529);
+            this.reportButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.reportButton.Location = new System.Drawing.Point(915, 529);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(75, 23);
             this.reportButton.TabIndex = 19;
@@ -266,7 +270,7 @@
             this.panel1.Controls.Add(this.nextImage);
             this.panel1.Location = new System.Drawing.Point(326, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(678, 410);
+            this.panel1.Size = new System.Drawing.Size(666, 410);
             this.panel1.TabIndex = 22;
             // 
             // ArtistEdit
@@ -274,7 +278,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1031, 566);
+            this.ClientSize = new System.Drawing.Size(1019, 566);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelSalary);
             this.Controls.Add(this.labelWorkExp);

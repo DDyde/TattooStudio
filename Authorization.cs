@@ -31,10 +31,14 @@ namespace TattooStudio
             
             if (dataTable.Rows.Count == 1)
             {
+                AccessLevel.rule = Int16.Parse(dataTable.Rows[0][4].ToString());
                 SessionAssignment sessionAssignment = new SessionAssignment();
                 sessionAssignment.Show();
-                AccessLevel.rule = Int16.Parse(dataTable.Rows[0][4].ToString());
                 this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Не верный логин или пароль");
             }
         }
     }

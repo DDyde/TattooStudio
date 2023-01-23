@@ -30,6 +30,10 @@
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridEmployee = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,9 +54,6 @@
             this.salary = new System.Windows.Forms.NumericUpDown();
             this.positionBox = new System.Windows.Forms.ComboBox();
             this.workExp = new System.Windows.Forms.NumericUpDown();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.addButton = new System.Windows.Forms.Button();
-            this.updateButton = new System.Windows.Forms.Button();
             this.employeeMiddlename = new System.Windows.Forms.TextBox();
             this.employeeName = new System.Windows.Forms.TextBox();
             this.employeeSurname = new System.Windows.Forms.TextBox();
@@ -61,6 +62,7 @@
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.workExp)).BeginInit();
@@ -80,6 +82,7 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer.Panel2.Controls.Add(this.label6);
             this.splitContainer.Panel2.Controls.Add(this.label5);
             this.splitContainer.Panel2.Controls.Add(this.label4);
@@ -90,14 +93,11 @@
             this.splitContainer.Panel2.Controls.Add(this.salary);
             this.splitContainer.Panel2.Controls.Add(this.positionBox);
             this.splitContainer.Panel2.Controls.Add(this.workExp);
-            this.splitContainer.Panel2.Controls.Add(this.deleteButton);
-            this.splitContainer.Panel2.Controls.Add(this.addButton);
-            this.splitContainer.Panel2.Controls.Add(this.updateButton);
             this.splitContainer.Panel2.Controls.Add(this.employeeMiddlename);
             this.splitContainer.Panel2.Controls.Add(this.employeeName);
             this.splitContainer.Panel2.Controls.Add(this.employeeSurname);
-            this.splitContainer.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer.SplitterDistance = 611;
+            this.splitContainer.Size = new System.Drawing.Size(961, 430);
+            this.splitContainer.SplitterDistance = 684;
             this.splitContainer.TabIndex = 0;
             // 
             // dataGridEmployee
@@ -112,9 +112,62 @@
             this.dataGridEmployee.Name = "dataGridEmployee";
             this.dataGridEmployee.RowHeadersWidth = 51;
             this.dataGridEmployee.RowTemplate.Height = 29;
-            this.dataGridEmployee.Size = new System.Drawing.Size(611, 450);
+            this.dataGridEmployee.Size = new System.Drawing.Size(684, 430);
             this.dataGridEmployee.TabIndex = 0;
             this.dataGridEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmployee_CellClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.34211F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.65789F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.tableLayoutPanel1.Controls.Add(this.addButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.deleteButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.updateButton, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 327);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(257, 40);
+            this.tableLayoutPanel1.TabIndex = 26;
+            // 
+            // addButton
+            // 
+            this.addButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addButton.Location = new System.Drawing.Point(88, 3);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(82, 34);
+            this.addButton.TabIndex = 10;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deleteButton.Location = new System.Drawing.Point(176, 3);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(78, 34);
+            this.deleteButton.TabIndex = 12;
+            this.deleteButton.Text = "Удалить";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Visible = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // updateButton
+            // 
+            this.updateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.updateButton.Location = new System.Drawing.Point(3, 3);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(79, 34);
+            this.updateButton.TabIndex = 9;
+            this.updateButton.Text = "Изменить";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Visible = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // label6
             // 
@@ -183,7 +236,7 @@
             this.менюToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(185, 24);
+            this.menuStrip.Size = new System.Drawing.Size(273, 24);
             this.menuStrip.TabIndex = 19;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -268,6 +321,8 @@
             // 
             // salary
             // 
+            this.salary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.salary.DecimalPlaces = 2;
             this.salary.Location = new System.Drawing.Point(4, 273);
             this.salary.Maximum = new decimal(new int[] {
@@ -276,102 +331,77 @@
             0,
             0});
             this.salary.Name = "salary";
-            this.salary.Size = new System.Drawing.Size(120, 23);
+            this.salary.Size = new System.Drawing.Size(205, 23);
             this.salary.TabIndex = 18;
             // 
             // positionBox
             // 
+            this.positionBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.positionBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.positionBox.FormattingEnabled = true;
             this.positionBox.Location = new System.Drawing.Point(3, 188);
             this.positionBox.Name = "positionBox";
-            this.positionBox.Size = new System.Drawing.Size(178, 23);
+            this.positionBox.Size = new System.Drawing.Size(263, 23);
             this.positionBox.TabIndex = 17;
             // 
             // workExp
             // 
+            this.workExp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.workExp.Location = new System.Drawing.Point(4, 230);
             this.workExp.Name = "workExp";
-            this.workExp.Size = new System.Drawing.Size(120, 23);
+            this.workExp.Size = new System.Drawing.Size(205, 23);
             this.workExp.TabIndex = 16;
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(96, 357);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(72, 25);
-            this.deleteButton.TabIndex = 15;
-            this.deleteButton.Text = "Удалить";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Visible = false;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // addButton
-            // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(51, 357);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(72, 25);
-            this.addButton.TabIndex = 14;
-            this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
-            // 
-            // updateButton
-            // 
-            this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(5, 357);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(72, 23);
-            this.updateButton.TabIndex = 13;
-            this.updateButton.Text = "Изменить";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Visible = false;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // employeeMiddlename
             // 
+            this.employeeMiddlename.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.employeeMiddlename.Location = new System.Drawing.Point(4, 147);
             this.employeeMiddlename.Name = "employeeMiddlename";
             this.employeeMiddlename.PlaceholderText = "Отчество";
-            this.employeeMiddlename.Size = new System.Drawing.Size(178, 23);
+            this.employeeMiddlename.Size = new System.Drawing.Size(262, 23);
             this.employeeMiddlename.TabIndex = 2;
             // 
             // employeeName
             // 
+            this.employeeName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.employeeName.Location = new System.Drawing.Point(4, 106);
             this.employeeName.Name = "employeeName";
             this.employeeName.PlaceholderText = "Имя";
-            this.employeeName.Size = new System.Drawing.Size(179, 23);
+            this.employeeName.Size = new System.Drawing.Size(262, 23);
             this.employeeName.TabIndex = 1;
             // 
             // employeeSurname
             // 
+            this.employeeSurname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.employeeSurname.Location = new System.Drawing.Point(4, 64);
             this.employeeSurname.Name = "employeeSurname";
             this.employeeSurname.PlaceholderText = "Фамилия";
-            this.employeeSurname.Size = new System.Drawing.Size(178, 23);
+            this.employeeSurname.Size = new System.Drawing.Size(262, 23);
             this.employeeSurname.TabIndex = 0;
             // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(961, 430);
             this.Controls.Add(this.splitContainer);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(977, 469);
             this.Name = "Employee";
             this.Text = "Employee";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Employee_FormClosed);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.salary)).EndInit();
@@ -388,9 +418,6 @@
         private TextBox employeeSurname;
         private ComboBox positionBox;
         private NumericUpDown workExp;
-        private Button deleteButton;
-        private Button addButton;
-        private Button updateButton;
         private TextBox employeeMiddlename;
         private NumericUpDown salary;
         private MenuStrip menuStrip;
@@ -410,5 +437,9 @@
         private Label label5;
         private Label label4;
         private Label label3;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button addButton;
+        private Button deleteButton;
+        private Button updateButton;
     }
 }

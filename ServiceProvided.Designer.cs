@@ -30,6 +30,12 @@
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridServiceProvided = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,18 +47,14 @@
             this.sessionStatusMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceTypeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.addButton = new System.Windows.Forms.Button();
             this.employeeBox = new System.Windows.Forms.ComboBox();
             this.typeOfServiceBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridServiceProvided)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,16 +71,14 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer.Panel2.Controls.Add(this.label2);
             this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
-            this.splitContainer.Panel2.Controls.Add(this.updateButton);
-            this.splitContainer.Panel2.Controls.Add(this.deleteButton);
-            this.splitContainer.Panel2.Controls.Add(this.addButton);
             this.splitContainer.Panel2.Controls.Add(this.employeeBox);
             this.splitContainer.Panel2.Controls.Add(this.typeOfServiceBox);
-            this.splitContainer.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer.SplitterDistance = 612;
+            this.splitContainer.Size = new System.Drawing.Size(802, 271);
+            this.splitContainer.SplitterDistance = 572;
             this.splitContainer.TabIndex = 0;
             // 
             // dataGridServiceProvided
@@ -91,9 +91,82 @@
             this.dataGridServiceProvided.Location = new System.Drawing.Point(0, 0);
             this.dataGridServiceProvided.Name = "dataGridServiceProvided";
             this.dataGridServiceProvided.RowTemplate.Height = 25;
-            this.dataGridServiceProvided.Size = new System.Drawing.Size(612, 450);
+            this.dataGridServiceProvided.Size = new System.Drawing.Size(572, 271);
             this.dataGridServiceProvided.TabIndex = 0;
             this.dataGridServiceProvided.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridServiceProvided_CellClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.7013F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.2987F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel1.Controls.Add(this.addButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.deleteButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.updateButton, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 174);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(220, 40);
+            this.tableLayoutPanel1.TabIndex = 34;
+            // 
+            // addButton
+            // 
+            this.addButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addButton.Location = new System.Drawing.Point(78, 3);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(74, 34);
+            this.addButton.TabIndex = 10;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deleteButton.Location = new System.Drawing.Point(158, 3);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(59, 34);
+            this.deleteButton.TabIndex = 12;
+            this.deleteButton.Text = "Удалить";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Visible = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // updateButton
+            // 
+            this.updateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.updateButton.Location = new System.Drawing.Point(3, 3);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(69, 34);
+            this.updateButton.TabIndex = 9;
+            this.updateButton.Text = "Изменить";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Visible = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 15);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Сотрудник:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(2, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 15);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Вид услуги:";
             // 
             // menuStrip
             // 
@@ -102,7 +175,7 @@
             this.менюToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(184, 24);
+            this.menuStrip.Size = new System.Drawing.Size(226, 24);
             this.menuStrip.TabIndex = 31;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -185,96 +258,45 @@
             this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
             this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
             // 
-            // updateButton
-            // 
-            this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(9, 215);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(74, 23);
-            this.updateButton.TabIndex = 28;
-            this.updateButton.Text = "Изменить";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Visible = false;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(100, 215);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(74, 25);
-            this.deleteButton.TabIndex = 30;
-            this.deleteButton.Text = "Удалить";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Visible = false;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // addButton
-            // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(50, 214);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(74, 25);
-            this.addButton.TabIndex = 29;
-            this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
-            // 
             // employeeBox
             // 
+            this.employeeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.employeeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.employeeBox.FormattingEnabled = true;
             this.employeeBox.Location = new System.Drawing.Point(2, 107);
             this.employeeBox.Name = "employeeBox";
-            this.employeeBox.Size = new System.Drawing.Size(179, 23);
+            this.employeeBox.Size = new System.Drawing.Size(220, 23);
             this.employeeBox.TabIndex = 1;
             // 
             // typeOfServiceBox
             // 
+            this.typeOfServiceBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.typeOfServiceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeOfServiceBox.FormattingEnabled = true;
             this.typeOfServiceBox.Location = new System.Drawing.Point(2, 63);
             this.typeOfServiceBox.Name = "typeOfServiceBox";
-            this.typeOfServiceBox.Size = new System.Drawing.Size(179, 23);
+            this.typeOfServiceBox.Size = new System.Drawing.Size(220, 23);
             this.typeOfServiceBox.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(2, 45);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 15);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Вид услуги:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 89);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 15);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Сотрудник:";
             // 
             // ServiceProvided
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 271);
             this.Controls.Add(this.splitContainer);
+            this.MinimumSize = new System.Drawing.Size(818, 310);
             this.Name = "ServiceProvided";
             this.Text = "ServiceProvided";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ServiceProvided_FormClosed);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridServiceProvided)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -287,9 +309,6 @@
         private DataGridView dataGridServiceProvided;
         private ComboBox employeeBox;
         private ComboBox typeOfServiceBox;
-        private Button updateButton;
-        private Button deleteButton;
-        private Button addButton;
         private MenuStrip menuStrip;
         private ToolStripMenuItem менюToolStripMenuItem;
         private ToolStripMenuItem toolStripTextBox1;
@@ -303,5 +322,9 @@
         private ToolStripMenuItem sessionAssignmentMenuItem;
         private Label label2;
         private Label label1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button addButton;
+        private Button deleteButton;
+        private Button updateButton;
     }
 }

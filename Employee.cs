@@ -21,6 +21,18 @@ namespace TattooStudio
         {
             InitializeComponent();
             databaseLoad();
+            removeMenuItem();
+        }
+
+        private void removeMenuItem()
+        {
+            if (rule != 1)
+            {
+                positionMenuItem.Visible = false;
+                serviceProvidedMenuItem.Visible = false;
+                typeOfServiceMenuItem.Visible = false;
+                sessionAssignmentMenuItem.Visible = false;
+            }
         }
 
         private void databaseLoad()
@@ -238,6 +250,9 @@ namespace TattooStudio
             this.Hide();
         }
 
-        
+        private void Employee_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

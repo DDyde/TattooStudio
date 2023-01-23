@@ -30,6 +30,11 @@
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridPosition = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.addButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,16 +46,13 @@
             this.sessionStatusMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceTypeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionAssignmentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.addButton = new System.Windows.Forms.Button();
             this.positionBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPosition)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,14 +70,12 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.BackColor = System.Drawing.Color.Black;
+            this.splitContainer.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.menuStrip);
-            this.splitContainer.Panel2.Controls.Add(this.updateButton);
-            this.splitContainer.Panel2.Controls.Add(this.deleteButton);
-            this.splitContainer.Panel2.Controls.Add(this.addButton);
             this.splitContainer.Panel2.Controls.Add(this.positionBox);
-            this.splitContainer.Size = new System.Drawing.Size(800, 450);
-            this.splitContainer.SplitterDistance = 612;
+            this.splitContainer.Size = new System.Drawing.Size(760, 317);
+            this.splitContainer.SplitterDistance = 513;
             this.splitContainer.TabIndex = 0;
             // 
             // dataGridPosition
@@ -91,9 +91,72 @@
             this.dataGridPosition.Name = "dataGridPosition";
             this.dataGridPosition.RowHeadersWidth = 51;
             this.dataGridPosition.RowTemplate.Height = 29;
-            this.dataGridPosition.Size = new System.Drawing.Size(612, 450);
+            this.dataGridPosition.Size = new System.Drawing.Size(513, 317);
             this.dataGridPosition.TabIndex = 0;
             this.dataGridPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridPosition_CellClick);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.34211F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.65789F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.Controls.Add(this.addButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.deleteButton, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.updateButton, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 226);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(237, 40);
+            this.tableLayoutPanel1.TabIndex = 27;
+            // 
+            // addButton
+            // 
+            this.addButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addButton.Location = new System.Drawing.Point(82, 3);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(76, 34);
+            this.addButton.TabIndex = 10;
+            this.addButton.Text = "Добавить";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.deleteButton.Location = new System.Drawing.Point(164, 3);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(70, 34);
+            this.deleteButton.TabIndex = 12;
+            this.deleteButton.Text = "Удалить";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Visible = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // updateButton
+            // 
+            this.updateButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.updateButton.Location = new System.Drawing.Point(3, 3);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(73, 34);
+            this.updateButton.TabIndex = 9;
+            this.updateButton.Text = "Изменить";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Visible = false;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 74);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 15);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Название должности:";
             // 
             // menuStrip
             // 
@@ -102,7 +165,7 @@
             this.менюToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(184, 24);
+            this.menuStrip.Size = new System.Drawing.Size(243, 24);
             this.menuStrip.TabIndex = 28;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -185,77 +248,34 @@
             this.sessionAssignmentMenuItem.Text = "Назначение сеанса";
             this.sessionAssignmentMenuItem.Click += new System.EventHandler(this.sessionAssignmentMenuItem_Click);
             // 
-            // updateButton
-            // 
-            this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Location = new System.Drawing.Point(3, 228);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(74, 23);
-            this.updateButton.TabIndex = 25;
-            this.updateButton.Text = "Изменить";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Visible = false;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Location = new System.Drawing.Point(98, 227);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(74, 25);
-            this.deleteButton.TabIndex = 27;
-            this.deleteButton.Text = "Удалить";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Visible = false;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // addButton
-            // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(55, 227);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(74, 25);
-            this.addButton.TabIndex = 26;
-            this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
-            // 
             // positionBox
             // 
+            this.positionBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.positionBox.Location = new System.Drawing.Point(3, 91);
             this.positionBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.positionBox.Name = "positionBox";
-            this.positionBox.Size = new System.Drawing.Size(179, 23);
+            this.positionBox.Size = new System.Drawing.Size(234, 23);
             this.positionBox.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 15);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Название должности:";
             // 
             // Position
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(760, 317);
             this.Controls.Add(this.splitContainer);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimumSize = new System.Drawing.Size(776, 356);
             this.Name = "Position";
             this.Text = "Positioncs";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Position_FormClosed);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPosition)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -267,9 +287,6 @@
         private SplitContainer splitContainer;
         private DataGridView dataGridPosition;
         private TextBox positionBox;
-        private Button updateButton;
-        private Button deleteButton;
-        private Button addButton;
         private MenuStrip menuStrip;
         private ToolStripMenuItem менюToolStripMenuItem;
         private ToolStripMenuItem toolStripTextBox1;
@@ -282,5 +299,9 @@
         private ToolStripMenuItem serviceTypeMenuItem;
         private ToolStripMenuItem sessionAssignmentMenuItem;
         private Label label1;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button addButton;
+        private Button deleteButton;
+        private Button updateButton;
     }
 }

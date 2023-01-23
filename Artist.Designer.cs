@@ -66,7 +66,7 @@
             this.dataGridArtist.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dataGridArtist.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dataGridArtist.RowTemplate.Height = 25;
-            this.dataGridArtist.Size = new System.Drawing.Size(522, 388);
+            this.dataGridArtist.Size = new System.Drawing.Size(527, 313);
             this.dataGridArtist.TabIndex = 0;
             this.dataGridArtist.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridArtist_CellClick);
             // 
@@ -78,7 +78,7 @@
             this.отчетToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(698, 24);
+            this.menuStrip.Size = new System.Drawing.Size(705, 24);
             this.menuStrip.TabIndex = 4;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -184,15 +184,17 @@
             this.splitContainer.Panel2.Controls.Add(this.buttonAccess);
             this.splitContainer.Panel2.Controls.Add(this.labelPosition);
             this.splitContainer.Panel2.Controls.Add(this.comboBoxPosition);
-            this.splitContainer.Size = new System.Drawing.Size(698, 388);
-            this.splitContainer.SplitterDistance = 522;
+            this.splitContainer.Size = new System.Drawing.Size(705, 313);
+            this.splitContainer.SplitterDistance = 527;
             this.splitContainer.TabIndex = 5;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(45, 247);
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.Location = new System.Drawing.Point(47, 226);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(74, 23);
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Сброс";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -200,9 +202,11 @@
             // 
             // buttonAccess
             // 
-            this.buttonAccess.Location = new System.Drawing.Point(45, 218);
+            this.buttonAccess.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAccess.Location = new System.Drawing.Point(47, 197);
             this.buttonAccess.Name = "buttonAccess";
-            this.buttonAccess.Size = new System.Drawing.Size(75, 23);
+            this.buttonAccess.Size = new System.Drawing.Size(74, 23);
             this.buttonAccess.TabIndex = 2;
             this.buttonAccess.Text = "Принять";
             this.buttonAccess.UseVisualStyleBackColor = true;
@@ -221,22 +225,26 @@
             // 
             // comboBoxPosition
             // 
+            this.comboBoxPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPosition.FormattingEnabled = true;
             this.comboBoxPosition.Location = new System.Drawing.Point(3, 78);
             this.comboBoxPosition.Name = "comboBoxPosition";
-            this.comboBoxPosition.Size = new System.Drawing.Size(166, 23);
+            this.comboBoxPosition.Size = new System.Drawing.Size(165, 23);
             this.comboBoxPosition.TabIndex = 0;
             // 
             // Artist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 412);
+            this.ClientSize = new System.Drawing.Size(705, 337);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.menuStrip);
+            this.MinimumSize = new System.Drawing.Size(721, 376);
             this.Name = "Artist";
             this.Text = "Artist";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Artist_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridArtist)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
