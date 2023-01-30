@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,12 +38,12 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                     (@"select id_employee, surname as Фамилия, name as Имя, middlename as Отчество, Должность.title as Должность,work_experience as Опыт, salary as Зарплата
                     from employeemaster
                     join Должность ON Должность.id_position = employeemaster.id_position", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
-            npgsqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Fill(dataTable);
             dataGridArtist.DataSource = dataTable;
             dataGridArtist.Columns[0].Visible = false;
             getComboBox();
@@ -54,12 +53,12 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                     (@"select id_position, title
                     from Должность
                     where title like '%_ату%' or title like '%_ирсинг%' or title like '%_атуаж%'", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
-            npgsqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Fill(dataTable);
             comboBoxPosition.DataSource = dataTable;
             comboBoxPosition.DisplayMember = "title";
             comboBoxPosition.ValueMember = "id_position";

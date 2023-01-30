@@ -1,4 +1,4 @@
-﻿using Npgsql;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +22,12 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                     (@$"select *
                        from Пользователь
                        where login = '{loginBox.Text}' and password = '{passwordBox.Text}'", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
-            npgsqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Fill(dataTable);
             
             if (dataTable.Rows.Count == 1)
             {

@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,11 +37,11 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                     (@"select id_session_status, title as Название
                     from Статус_сеанса", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
-            npgsqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Fill(dataTable);
             dataGridSessionStatus.DataSource = dataTable;
             dataGridSessionStatus.Columns[0].Visible = false;
 
@@ -56,7 +55,7 @@ namespace TattooStudio
 
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"SELECT * FROM Статус_сеанса
                         WHERE id_session_status={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -83,7 +82,7 @@ namespace TattooStudio
                 changeVisibleBox();
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"UPDATE Статус_сеанса SET title='{sessionStatusBox.Text}'
                     WHERE id_session_status='{rowId}'", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -105,7 +104,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"INSERT INTO Статус_сеанса (title) 
                     VALUES ('{sessionStatusBox.Text}')", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -207,7 +206,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"DELETE FROM Статус_сеанса WHERE id_session_status={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);

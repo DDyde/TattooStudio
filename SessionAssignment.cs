@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +38,7 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                     (@"SELECT Назначение_сеанса.id_session_asignment, CONCAT_WS(' ', Клиент.surname, Клиент.name, Клиент.middlename) as ФИО,
                         Вид_услуги.title as Вид_услуги, Статус_сеанса.title as Статус_сеанса,date_session as Дата, time_session as Время
                         FROM Назначение_сеанса
@@ -48,7 +47,7 @@ namespace TattooStudio
                         JOIN Вид_услуги ON Вид_услуги.id_type_of_service = Предоставляемая_услуга.id_type_of_service
                         JOIN Статус_сеанса ON Статус_сеанса.id_session_status = Назначение_сеанса.id_session_status", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
-            npgsqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Fill(dataTable);
             dataGridSessionAssignment.DataSource = dataTable;
             dataGridSessionAssignment.Columns[0].Visible = false;
 
@@ -64,7 +63,7 @@ namespace TattooStudio
 
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"SELECT Назначение_сеанса.id_session_asignment, Клиент.id_client,
                         Вид_услуги.id_type_of_service, Статус_сеанса.id_session_status,date_session as Дата_сеанса, time_session as Время_сеанса
                         FROM Назначение_сеанса
@@ -97,7 +96,7 @@ namespace TattooStudio
         private void comboBox()
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(
                 $@"SELECT id_client, CONCAT_WS(' ', surname, name, middlename) as ФИО
                 FROM Клиент", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
@@ -106,7 +105,7 @@ namespace TattooStudio
             clientBox.DisplayMember = "ФИО";
             clientBox.ValueMember = "id_client";
 
-            NpgsqlDataAdapter sqlDataAdapter2 = new NpgsqlDataAdapter(
+            MySqlDataAdapter sqlDataAdapter2 = new MySqlDataAdapter(
                 $@"Select id_service_provided, CONCAT(Вид_услуги.title, ' (', Сотрудник.surname, ' ', Сотрудник.name, ' ',Сотрудник.middlename, ')') as Сервис
                     FROM Предоставляемая_услуга
                     JOIN Вид_услуги ON Вид_услуги.id_type_of_service = Предоставляемая_услуга.id_type_of_service
@@ -117,7 +116,7 @@ namespace TattooStudio
             serviceProvidedBox.DisplayMember = "Сервис";
             serviceProvidedBox.ValueMember = "id_service_provided";
 
-            NpgsqlDataAdapter sqlDataAdapter3 = new NpgsqlDataAdapter(
+            MySqlDataAdapter sqlDataAdapter3 = new MySqlDataAdapter(
                 $@"SELECT id_session_status, title
                 FROM Статус_сеанса", connectionToDB.GetConnection());
             DataTable dataTable3 = new DataTable();
@@ -134,7 +133,7 @@ namespace TattooStudio
                 changeVisibleBox();
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"UPDATE Назначение_сеанса SET id_client='{clientBox.SelectedValue}', date_session='{dateSession.Text}',  time_session='{timeSession.Text}',  
                     id_session_status='{sessionStatusBox.SelectedValue}', id_service_provided='{serviceProvidedBox.SelectedValue}'
                     WHERE id_session_asignment='{rowId}'", connectionToDB.GetConnection());
@@ -157,7 +156,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"INSERT INTO Назначение_сеанса (id_client, date_session, time_session, id_session_status, id_service_provided) 
                     VALUES ('{clientBox.SelectedValue}', '{dateSession.Text}', '{timeSession.Text}', 
                     '{sessionStatusBox.SelectedValue}', '{serviceProvidedBox.SelectedValue}')", connectionToDB.GetConnection());
@@ -186,7 +185,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"DELETE FROM Назначение_сеанса WHERE id_session_asignment={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);

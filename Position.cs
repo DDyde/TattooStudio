@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,7 +38,7 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter npgsqlDataAdapter = new MySqlDataAdapter
                     (@"select id_position, title as Название
                     from Должность", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
@@ -57,7 +56,7 @@ namespace TattooStudio
 
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"SELECT * FROM Должность
                         WHERE id_position={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -84,7 +83,7 @@ namespace TattooStudio
                 changeVisibleBox();
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"UPDATE Должность SET title='{positionBox.Text}'
                     WHERE id_position='{rowId}'", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -106,7 +105,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"INSERT INTO Должность (title) 
                     VALUES ('{positionBox.Text}')", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -208,7 +207,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"DELETE FROM Должность WHERE id_position={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);

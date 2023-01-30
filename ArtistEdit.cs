@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,7 +44,7 @@ namespace TattooStudio
             getPosition();
 
             ConnectionToDB connectionToDB = new ConnectionToDB();
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                ($@"SELECT * FROM employeemaster
                         WHERE id_employee={rowId}", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
@@ -65,7 +64,7 @@ namespace TattooStudio
         private void getPosition()
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(
                 $@"SELECT id_position, title
                 FROM Должность
                 WHERE title LIKE '%_ату%' OR title LIKE '%_ирсинг%' OR title LIKE '%_атуаж%'", connectionToDB.GetConnection());
@@ -181,12 +180,12 @@ namespace TattooStudio
                         ConnectionToDB connectionToDB = new ConnectionToDB();
                         string newImageName = Path.GetFileName(artistProfile.ImageLocation);
 
-                        NpgsqlCommand sqlCommand = new NpgsqlCommand($@"UPDATE Сотрудник SET 
+                        MySqlCommand sqlCommand = new MySqlCommand($@"UPDATE Сотрудник SET 
                                                                         image_employee=@profileImageArtist
                                                                         WHERE id_employee='{rowId}'", connectionToDB.GetConnection());
                         sqlCommand.Parameters.AddWithValue("@profileImageArtist", newImageName);
 
-                        NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                        MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(sqlCommand);
                         DataTable dataTable = new DataTable();
                         sqlDataAdapter.Fill(dataTable);
                     }
@@ -210,13 +209,13 @@ namespace TattooStudio
                 ConnectionToDB connectionToDB = new ConnectionToDB();
                 string newImageName = Path.GetFileName(artistProfile.ImageLocation);
 
-                NpgsqlCommand sqlCommand = new NpgsqlCommand($@"UPDATE Сотрудник SET surname='{artistSurname.Text}', name='{artistName.Text}', middlename='{artistMiddlename.Text}', 
+                MySqlCommand sqlCommand = new MySqlCommand($@"UPDATE Сотрудник SET surname='{artistSurname.Text}', name='{artistName.Text}', middlename='{artistMiddlename.Text}', 
                     id_position='{artistPosition.SelectedValue}', work_experience='{workExp.Text}', salary='{salary.Text}', 
                     image_employee=@profileImageArtist
                     WHERE id_employee='{rowId}'", connectionToDB.GetConnection());
                 sqlCommand.Parameters.AddWithValue("@profileImageArtist", newImageName);
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(sqlCommand);
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
             }
@@ -235,7 +234,7 @@ namespace TattooStudio
                 Directory.CreateDirectory($@".\Photo\profile\{nickNameBox.Text}\");
                 Directory.CreateDirectory($@".\Photo\profile\{nickNameBox.Text}\work\");
 
-                NpgsqlCommand sqlCommand = new NpgsqlCommand($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary, image_employee, image_work_folder)
+                MySqlCommand sqlCommand = new MySqlCommand($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary, image_employee, image_work_folder)
                                                             VALUES ('{artistSurname.Text}', '{artistName.Text}', '{artistMiddlename.Text}', '{artistPosition.SelectedValue}',
                                                             '{workExp.Text}', '{salary.Text}', @profileImageArtist, @nickName)", connectionToDB.GetConnection());
                 sqlCommand.Parameters.AddWithValue("@profileImageArtist", newImageName);
@@ -243,13 +242,13 @@ namespace TattooStudio
 
                 fName = nickNameBox.Text;
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(sqlCommand);
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(sqlCommand);
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
 
-                NpgsqlCommand command = new NpgsqlCommand(@"SELECT max(id_employee)
+                MySqlCommand command = new MySqlCommand(@"SELECT max(id_employee)
                                                         FROM employeemaster", connectionToDB.GetConnection());
-                NpgsqlDataAdapter data = new NpgsqlDataAdapter(command);
+                MySqlDataAdapter data = new MySqlDataAdapter(command);
                 DataTable dataTable1 = new DataTable();
                 data.Fill(dataTable1);
                 rowId = Int16.Parse(dataTable1.Rows[0][0].ToString());
@@ -315,7 +314,7 @@ namespace TattooStudio
             if (rule == 1 || rule == 2)
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(
                     $@"DELETE FROM Сотрудник WHERE id_employee={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
 

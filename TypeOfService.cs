@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,13 +38,13 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                     (@"SELECT id_type_of_service, Вид_услуги.title as Название, Тип_услуги.title as Тип_услуги,
                         Вид_услуги.price as Цена
                         FROM Вид_услуги
                         JOIN Тип_услуги ON Тип_услуги.id_service_type = Вид_услуги.id_service_type", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
-            npgsqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Fill(dataTable);
             dataGridTypeOfService.DataSource = dataTable;
             dataGridTypeOfService.Columns[0].Visible = false;
 
@@ -63,7 +62,7 @@ namespace TattooStudio
 
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"SELECT * FROM Вид_услуги
                         WHERE id_type_of_service={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -88,7 +87,7 @@ namespace TattooStudio
         private void comboBox()
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(
                 $@"SELECT id_service_type, title
                 FROM Тип_услуги", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
@@ -105,7 +104,7 @@ namespace TattooStudio
                 changeVisibleBox();
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"UPDATE Вид_услуги SET title='{typeServiceBox.Text}', price='{priceBox.Text}', id_service_type='{typeServiceComboBox.SelectedValue}'
                     WHERE id_type_of_service='{rowId}'", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -126,7 +125,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"INSERT INTO Вид_услуги (title, price, id_service_type) 
                     VALUES ('{typeServiceBox.Text}', '{priceBox.Text}', '{typeServiceComboBox.SelectedValue}')", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -231,7 +230,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"DELETE FROM Вид_услуги WHERE id_type_of_service={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);

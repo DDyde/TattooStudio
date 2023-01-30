@@ -1,5 +1,4 @@
-﻿using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -40,7 +39,7 @@ namespace TattooStudio
             comboBox();
             ConnectionToDB connectionToDB = new ConnectionToDB();
 
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter npgsqlDataAdapter = new MySqlDataAdapter
                     (@"select id_employee, surname as Фамилия, name as Имя, middlename as Отчество, Должность.title as Должность, 
                         work_experience as Опыт, salary as Зарплата
                         from Сотрудник
@@ -55,7 +54,7 @@ namespace TattooStudio
         private void comboBox()
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
-            NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter(
+            MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(
                 $@"SELECT id_position, title
                 FROM Должность
                 WHERE title NOT LIKE '%_ату%' AND title NOT LIKE '%_ирсинг%' AND title NOT LIKE '%_атуаж%'", connectionToDB.GetConnection());
@@ -107,7 +106,7 @@ namespace TattooStudio
                 changeVisibleBox();
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"UPDATE Сотрудник SET surname='{employeeSurname.Text}', name='{employeeName.Text}', middlename='{employeeMiddlename.Text}', 
                     id_position='{positionBox.SelectedValue}', work_experience='{workExp.Value.ToString()}', salary='{salary.Value.ToString()}'
                     WHERE id_employee='{rowId}'", connectionToDB.GetConnection());
@@ -127,7 +126,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"INSERT INTO Сотрудник (surname, name, middlename, id_position, work_experience, salary) 
                     VALUES ('{employeeSurname.Text}', '{employeeName.Text}', '{employeeMiddlename.Text}', 
                     '{positionBox.SelectedValue}', '{workExp.Value.ToString()}', '{salary.Value.ToString()}')", connectionToDB.GetConnection());

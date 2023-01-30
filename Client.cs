@@ -1,4 +1,3 @@
-using Npgsql;
 using System.Data;
 
 namespace TattooStudio
@@ -30,7 +29,7 @@ namespace TattooStudio
         {
             ConnectionToDB connectionToDB = new ConnectionToDB();
             
-            NpgsqlDataAdapter npgsqlDataAdapter = new NpgsqlDataAdapter
+            MySqlDataAdapter npgsqlDataAdapter = new MySqlDataAdapter
                     (@"select id_client, surname as Фамилия, name as Имя, middlename as Отчество, date_of_birth as Дата_рождения
                       from Клиент", connectionToDB.GetConnection());
             DataTable dataTable = new DataTable();
@@ -49,7 +48,7 @@ namespace TattooStudio
 
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"SELECT * FROM Клиент
                         WHERE id_client={rowId}", connectionToDB.GetConnection());
                 DataTable dataTable = new DataTable();
@@ -75,7 +74,7 @@ namespace TattooStudio
                 changeVisibleBox();
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"UPDATE Клиент SET surname='{clientSurname.Text}', name='{clientName.Text}', middlename='{clientMiddlename.Text}', 
                     date_of_birth='{dateBirthBox.Value.ToString("yyyy-MM-dd")}'
                     WHERE id_client='{rowId}'", connectionToDB.GetConnection());
@@ -98,7 +97,7 @@ namespace TattooStudio
             {
                 ConnectionToDB connectionToDB = new ConnectionToDB();
 
-                NpgsqlDataAdapter sqlDataAdapter = new NpgsqlDataAdapter
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter
                    ($@"INSERT INTO Клиент (surname, name, middlename, date_of_birth) 
                     VALUES ('{clientSurname.Text}', '{clientName.Text}', '{clientMiddlename.Text}', 
                     '{dateBirthBox.Value.ToString("yyyy-MM-dd")}')", connectionToDB.GetConnection());

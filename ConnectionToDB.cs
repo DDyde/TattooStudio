@@ -1,4 +1,4 @@
-﻿using Npgsql;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,9 +10,9 @@ namespace TattooStudio
 {
     public class ConnectionToDB
     {
-        public NpgsqlConnection GetConnection()
+        public MySqlConnection GetConnection()
         {
-            return new NpgsqlConnection("Server=localhost; Port=5432; User Id=postgres; Password=mi45as27; Database=TattooStudio;");
+            return new MySqlConnection("Server=localhost; Port=3306; User Id=root; Password=''; Database=tattoostudio;");
         }
     }
 }
